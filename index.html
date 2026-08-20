@@ -11,7 +11,6 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; }
 
-    /* Background dengan Gambar Gelombang Neon Abstract */
     body {
       min-height: 100vh;
       display: flex;
@@ -32,7 +31,6 @@
       overflow-x: hidden;
     }
 
-    /* Pattern Bintik/Polkadot Elegan */
     body::before {
       content: "";
       position: absolute;
@@ -45,7 +43,6 @@
 
     .wrapper { position: relative; z-index: 2; width: 100%; max-width: 540px; }
 
-    /* Glassmorphic Card Box */
     .card {
       background: rgba(18, 18, 26, 0.65);
       backdrop-filter: blur(20px);
@@ -85,9 +82,10 @@
     .input-wrapper {
       position: relative;
       display: flex;
-      gap: 10px;
+      align-items: center;
+      gap: 6px;
       background: rgba(0, 0, 0, 0.5);
-      padding: 6px;
+      padding: 6px 8px;
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 16px;
       transition: all 0.3s ease;
@@ -98,15 +96,50 @@
       box-shadow: 0 0 20px rgba(254, 44, 85, 0.35);
     }
 
-    input { flex: 1; padding: 14px 16px; background: transparent; border: none; color: #fff; font-size: 14px; outline: none; }
+    input {
+      flex: 1;
+      padding: 12px 8px;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+    }
+
     input::placeholder { color: #666; }
 
+    /* Tombol Pintasan Paste & Clear */
+    .icon-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #25f4ee;
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+
+    .icon-btn:hover { background: rgba(37, 244, 238, 0.2); transform: scale(1.03); }
+
+    .btn-clear {
+      color: #fe2c55;
+      display: none; /* Otomatis muncul jika ada teks */
+    }
+
+    .btn-clear:hover { background: rgba(254, 44, 85, 0.2); }
+
     .btn-submit {
-      padding: 14px 28px;
+      padding: 12px 22px;
       background: linear-gradient(45deg, #fe2c55, #ff0050);
       color: white;
       border: none;
-      border-radius: 12px;
+      border-radius: 10px;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.3s;
@@ -177,7 +210,9 @@
       <p class="subtitle">Unduh Video TikTok HD & Musik MP3 tanpa Watermark langsung ke perangkatmu.</p>
 
       <div class="input-wrapper">
-        <input type="text" id="tiktokUrl" placeholder="Tempelkan link video TikTok di sini...">
+        <input type="text" id="tiktokUrl" placeholder="Tempel link TikTok..." oninput="toggleButtons()">
+        <button type="button" class="icon-btn btn-clear" id="btnClear" onclick="clearInput()">✖ Batal</button>
+        <button type="button" class="icon-btn" id="btnPaste" onclick="pasteUrl()">📋 Tempel</button>
         <button class="btn-submit" onclick="fetchVideo()">Proses</button>
       </div>
 
@@ -215,6 +250,38 @@
   </div>
 
   <script>
+    // Fitur Tempel Link dari Clipboard
+    async function pasteUrl() {
+      try {
+        const text = await navigator.clipboard.readText();
+        if (text) {
+          document.getElementById('tiktokUrl').value = text;
+          toggleButtons();
+        }
+      } catch (err) {
+        alert('Izin membaca clipboard tidak diaktifkan pada browser.');
+      }
+    }
+
+    // Fitur Batal/Hapus Input
+    function clearInput() {
+      document.getElementById('tiktokUrl').value = '';
+      document.getElementById('resultCard').style.display = 'none';
+      toggleButtons();
+    }
+
+    // Tampilkan tombol Batal jika ada teks
+    function toggleButtons() {
+      const val = document.getElementById('tiktokUrl').value;
+      const btnClear = document.getElementById('btnClear');
+      if (val.length > 0) {
+        btnClear.style.display = 'inline-flex';
+      } else {
+        btnClear.style.display = 'none';
+      }
+    }
+
+    // Fetch Video TikTok
     async function fetchVideo() {
       const url = document.getElementById('tiktokUrl').value.trim();
       const loader = document.getElementById('loader');
