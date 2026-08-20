@@ -11,6 +11,7 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; }
 
+    /* Background dengan Gambar Gelombang Neon Abstract */
     body {
       min-height: 100vh;
       display: flex;
@@ -18,39 +19,41 @@
       align-items: center;
       padding: 40px 20px;
       color: #ffffff;
-      background: linear-gradient(-45deg, #0d0d11, #1a0826, #051d2d, #1f0b18);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
+      background-color: #0b0b12;
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(37, 244, 238, 0.18) 0%, transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(254, 44, 85, 0.18) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.15) 0%, transparent 60%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 900'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2325f4ee' stop-opacity='0.25'/%3E%3Cstop offset='100%25' stop-color='%23fe2c55' stop-opacity='0.25'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M-100,200 C300,600 800,-100 1700,500 L1700,1000 L-100,1000 Z' fill='url(%23g1)'/%3E%3Cpath d='M-100,500 C400,100 1000,800 1700,200' stroke='%2325f4ee' stroke-width='4' fill='none' opacity='0.3'/%3E%3Cpath d='M-100,300 C500,900 1100,0 1700,700' stroke='%23fe2c55' stroke-width='5' fill='none' opacity='0.3'/%3E%3Ccircle cx='300' cy='250' r='180' fill='%2325f4ee' opacity='0.08' filter='blur(40px)'/%3E%3Ccircle cx='1300' cy='650' r='220' fill='%23fe2c55' opacity='0.08' filter='blur(50px)'/%3E%3C/svg%3E");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
       position: relative;
       overflow-x: hidden;
     }
 
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
+    /* Pattern Bintik/Polkadot Elegan */
     body::before {
       content: "";
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
-      background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-      background-size: 24px 24px;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+      background-size: 28px 28px;
       z-index: 1;
       pointer-events: none;
     }
 
     .wrapper { position: relative; z-index: 2; width: 100%; max-width: 540px; }
 
+    /* Glassmorphic Card Box */
     .card {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(18, 18, 26, 0.65);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       padding: 40px 30px;
       border-radius: 24px;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
       text-align: center;
     }
 
@@ -83,16 +86,16 @@
       position: relative;
       display: flex;
       gap: 10px;
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.5);
       padding: 6px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 16px;
       transition: all 0.3s ease;
     }
 
     .input-wrapper:focus-within {
       border-color: #fe2c55;
-      box-shadow: 0 0 20px rgba(254, 44, 85, 0.3);
+      box-shadow: 0 0 20px rgba(254, 44, 85, 0.35);
     }
 
     input { flex: 1; padding: 14px 16px; background: transparent; border: none; color: #fff; font-size: 14px; outline: none; }
