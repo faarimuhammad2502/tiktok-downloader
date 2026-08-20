@@ -5,13 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TikTok Video & Audio Downloader Ultra</title>
   
-  <!-- Logo Favicon "DT" di Tab Browser -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='28' fill='%23121212'/><text x='50%' y='68%' font-size='52' font-weight='900' font-family='Arial, sans-serif' text-anchor='middle' fill='%23FF0050'>D<tspan fill='%2300F2FE'>T</tspan></text></svg>">
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; }
 
-    /* Latar Belakang Gradient Vibrant & Dynamic Pattern */
     body {
       min-height: 100vh;
       display: flex;
@@ -25,12 +23,11 @@
       overflow-x: hidden;
     }
 
-    /* Glow Aura Effect di Belakang Card */
     body::after {
       content: "";
       position: absolute;
-      width: 350px;
-      height: 350px;
+      width: 380px;
+      height: 380px;
       background: linear-gradient(135deg, rgba(0, 242, 254, 0.25), rgba(255, 0, 80, 0.25));
       filter: blur(100px);
       border-radius: 50%;
@@ -50,9 +47,8 @@
 
     .wrapper { position: relative; z-index: 2; width: 100%; max-width: 520px; }
 
-    /* Card Box Premium Glassmorphism */
     .card {
-      background: rgba(18, 20, 29, 0.75);
+      background: rgba(18, 20, 29, 0.85);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       border: 1px solid rgba(255, 255, 255, 0.15);
@@ -90,22 +86,21 @@
 
     .subtitle { color: #a0a5ba; font-size: 14px; margin-bottom: 30px; line-height: 1.5; }
 
-    /* Input Box Wrapper */
     .input-wrapper {
       position: relative;
       display: flex;
       align-items: center;
       gap: 8px;
-      background: rgba(10, 11, 16, 0.8);
+      background: rgba(10, 11, 16, 0.85);
       padding: 8px 10px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 18px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.3s ease;
     }
 
     .input-wrapper:focus-within {
       border-color: #00F2FE;
-      box-shadow: 0 0 25px rgba(0, 242, 254, 0.3);
+      box-shadow: 0 0 25px rgba(0, 242, 254, 0.35);
     }
 
     input {
@@ -120,7 +115,7 @@
 
     input::placeholder { color: #525866; }
 
-    /* Tombol Dinamis (Satu Tombol yang Berubah Fungsi) */
+    /* Single Dynamic Button */
     .btn-action-toggle {
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.15);
@@ -143,7 +138,6 @@
       transform: scale(1.02);
     }
 
-    /* Style Saat Mode 'Batal' Active */
     .btn-action-toggle.is-cancel {
       color: #FF0050;
       background: rgba(255, 0, 80, 0.12);
@@ -242,7 +236,6 @@
       <div class="input-wrapper">
         <input type="text" id="tiktokUrl" placeholder="Tempel link TikTok..." oninput="updateActionBtn()">
         
-        <!-- Satu Tombol Dinamis (Tempel / Batal) -->
         <button type="button" class="btn-action-toggle" id="btnToggle" onclick="handleToggleAction()">
           <span id="btnIcon">📋</span> <span id="btnText">Tempel</span>
         </button>
@@ -284,18 +277,14 @@
   </div>
 
   <script>
-    // Fungsi Menangani Klik pada Tombol Dinamis
     async function handleToggleAction() {
       const input = document.getElementById('tiktokUrl');
       
-      // Jika kolom sudah ada isinya -> Fungsi Hapus/Batal
       if (input.value.length > 0) {
         input.value = '';
         document.getElementById('resultCard').style.display = 'none';
         updateActionBtn();
-      } 
-      // Jika kolom masih kosong -> Fungsi Tempel dari Clipboard
-      else {
+      } else {
         try {
           const text = await navigator.clipboard.readText();
           if (text) {
@@ -303,12 +292,11 @@
             updateActionBtn();
           }
         } catch (err) {
-          alert('Silakan gunakan opsi tempel biasa di perangkatmu.');
+          alert('Gunakan kombinasi tempel biasa jika izin clipboard dinonaktifkan.');
         }
       }
     }
 
-    // Fungsi Memperbarui Tampilan Tombol Saat Mengetik/Mengisi Link
     function updateActionBtn() {
       const input = document.getElementById('tiktokUrl');
       const btn = document.getElementById('btnToggle');
@@ -326,7 +314,6 @@
       }
     }
 
-    // Mengambil Data Video dari RapidAPI
     async function fetchVideo() {
       const videoUrl = document.getElementById('tiktokUrl').value.trim();
       const loader = document.getElementById('loader');
