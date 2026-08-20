@@ -6,11 +6,12 @@
   <title>TikTok Video & Audio Downloader Ultra</title>
   
   <!-- Logo Favicon "DT" di Tab Browser -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='28' fill='%23121212'/><text x='50%' y='68%' font-size='52' font-weight='900' font-family='Arial, sans-serif' text-anchor='middle' fill='%23FE2C55'>D<tspan fill='%2325F4EE'>T</tspan></text></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='28' fill='%23121212'/><text x='50%' y='68%' font-size='52' font-weight='900' font-family='Arial, sans-serif' text-anchor='middle' fill='%23FF0050'>D<tspan fill='%2300F2FE'>T</tspan></text></svg>">
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; }
 
+    /* Latar Belakang Gradient Vibrant & Dynamic Pattern */
     body {
       min-height: 100vh;
       display: flex;
@@ -18,87 +19,98 @@
       align-items: center;
       padding: 40px 20px;
       color: #ffffff;
-      background-color: #0b0b12;
-      background-image: 
-        radial-gradient(circle at 15% 20%, rgba(37, 244, 238, 0.18) 0%, transparent 45%),
-        radial-gradient(circle at 85% 80%, rgba(254, 44, 85, 0.18) 0%, transparent 45%),
-        radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.15) 0%, transparent 60%),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 900'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2325f4ee' stop-opacity='0.25'/%3E%3Cstop offset='100%25' stop-color='%23fe2c55' stop-opacity='0.25'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M-100,200 C300,600 800,-100 1700,500 L1700,1000 L-100,1000 Z' fill='url(%23g1)'/%3E%3Cpath d='M-100,500 C400,100 1000,800 1700,200' stroke='%2325f4ee' stroke-width='4' fill='none' opacity='0.3'/%3E%3Cpath d='M-100,300 C500,900 1100,0 1700,700' stroke='%23fe2c55' stroke-width='5' fill='none' opacity='0.3'/%3E%3Ccircle cx='300' cy='250' r='180' fill='%2325f4ee' opacity='0.08' filter='blur(40px)'/%3E%3Ccircle cx='1300' cy='650' r='220' fill='%23fe2c55' opacity='0.08' filter='blur(50px)'/%3E%3C/svg%3E");
-      background-size: cover;
-      background-position: center;
+      background: radial-gradient(circle at 10% 10%, #1a0033 0%, #080811 50%, #001a2e 100%);
       background-attachment: fixed;
       position: relative;
       overflow-x: hidden;
+    }
+
+    /* Glow Aura Effect di Belakang Card */
+    body::after {
+      content: "";
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      background: linear-gradient(135deg, rgba(0, 242, 254, 0.25), rgba(255, 0, 80, 0.25));
+      filter: blur(100px);
+      border-radius: 50%;
+      z-index: 0;
+      pointer-events: none;
     }
 
     body::before {
       content: "";
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
-      background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-      background-size: 28px 28px;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1.5px, transparent 1.5px);
+      background-size: 32px 32px;
       z-index: 1;
       pointer-events: none;
     }
 
-    .wrapper { position: relative; z-index: 2; width: 100%; max-width: 540px; }
+    .wrapper { position: relative; z-index: 2; width: 100%; max-width: 520px; }
 
+    /* Card Box Premium Glassmorphism */
     .card {
-      background: rgba(18, 18, 26, 0.65);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      padding: 40px 30px;
-      border-radius: 24px;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      background: rgba(18, 20, 29, 0.75);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 42px 32px;
+      border-radius: 28px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.15);
       text-align: center;
     }
 
     .badge {
-      display: inline-block;
-      padding: 6px 14px;
-      background: rgba(37, 244, 238, 0.15);
-      color: #25f4ee;
-      border: 1px solid rgba(37, 244, 238, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      background: rgba(0, 242, 254, 0.12);
+      color: #00F2FE;
+      border: 1px solid rgba(0, 242, 254, 0.3);
       border-radius: 50px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      margin-bottom: 12px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      margin-bottom: 16px;
       text-transform: uppercase;
     }
 
     .brand {
-      font-size: 32px;
-      font-weight: 800;
+      font-size: 34px;
+      font-weight: 900;
       margin-bottom: 8px;
-      background: linear-gradient(45deg, #25f4ee, #fe2c55);
+      background: linear-gradient(135deg, #00F2FE 0%, #4FACFE 30%, #FF0050 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
     }
 
-    .subtitle { color: #b0b0ba; font-size: 14px; margin-bottom: 28px; line-height: 1.5; }
+    .subtitle { color: #a0a5ba; font-size: 14px; margin-bottom: 30px; line-height: 1.5; }
 
+    /* Input Box Wrapper */
     .input-wrapper {
       position: relative;
       display: flex;
       align-items: center;
-      gap: 6px;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 6px 8px;
+      gap: 8px;
+      background: rgba(10, 11, 16, 0.8);
+      padding: 8px 10px;
       border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 16px;
-      transition: all 0.3s ease;
+      border-radius: 18px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .input-wrapper:focus-within {
-      border-color: #fe2c55;
-      box-shadow: 0 0 20px rgba(254, 44, 85, 0.35);
+      border-color: #00F2FE;
+      box-shadow: 0 0 25px rgba(0, 242, 254, 0.3);
     }
 
     input {
       flex: 1;
-      padding: 12px 8px;
+      padding: 12px 10px;
       background: transparent;
       border: none;
       color: #fff;
@@ -106,77 +118,90 @@
       outline: none;
     }
 
-    input::placeholder { color: #666; }
+    input::placeholder { color: #525866; }
 
-    .icon-btn {
+    /* Tombol Dinamis (Satu Tombol yang Berubah Fungsi) */
+    .btn-action-toggle {
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #25f4ee;
-      padding: 8px 12px;
-      border-radius: 10px;
-      font-size: 12px;
-      font-weight: 600;
+      color: #00F2FE;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.25s ease;
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
       white-space: nowrap;
     }
 
-    .icon-btn:hover { background: rgba(37, 244, 238, 0.2); transform: scale(1.03); }
-
-    .btn-clear {
-      color: #fe2c55;
-      display: none;
+    .btn-action-toggle:hover {
+      background: rgba(0, 242, 254, 0.2);
+      border-color: rgba(0, 242, 254, 0.4);
+      transform: scale(1.02);
     }
 
-    .btn-clear:hover { background: rgba(254, 44, 85, 0.2); }
+    /* Style Saat Mode 'Batal' Active */
+    .btn-action-toggle.is-cancel {
+      color: #FF0050;
+      background: rgba(255, 0, 80, 0.12);
+      border-color: rgba(255, 0, 80, 0.3);
+    }
+
+    .btn-action-toggle.is-cancel:hover {
+      background: rgba(255, 0, 80, 0.25);
+      border-color: rgba(255, 0, 80, 0.5);
+    }
 
     .btn-submit {
-      padding: 12px 22px;
-      background: linear-gradient(45deg, #fe2c55, #ff0050);
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #FF0050 0%, #7F00FF 100%);
       color: white;
       border: none;
-      border-radius: 10px;
-      font-weight: 700;
+      border-radius: 12px;
+      font-weight: 800;
       cursor: pointer;
-      transition: all 0.3s;
-      box-shadow: 0 4px 15px rgba(254, 44, 85, 0.4);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(255, 0, 80, 0.4);
     }
 
-    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(254, 44, 85, 0.6); }
+    .btn-submit:hover { 
+      transform: translateY(-2px); 
+      box-shadow: 0 6px 25px rgba(255, 0, 80, 0.6); 
+    }
 
     .loader {
       display: none;
-      margin: 24px auto 0;
-      border: 3px solid rgba(255,255,255,0.1);
-      border-top: 3px solid #25f4ee;
+      margin: 28px auto 0;
+      border: 3.5px solid rgba(255,255,255,0.1);
+      border-top: 3.5px solid #00F2FE;
       border-radius: 50%;
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
       animation: spin 0.8s linear infinite;
     }
     @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
     #resultCard {
       display: none;
-      margin-top: 28px;
-      padding-top: 24px;
+      margin-top: 30px;
+      padding-top: 26px;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       animation: fadeIn 0.4s ease;
     }
 
     @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
-    .action-btns { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
+    .action-btns { display: flex; flex-direction: column; gap: 12px; margin-top: 18px; }
 
     .btn-dl {
-      padding: 14px;
-      border-radius: 12px;
+      padding: 15px;
+      border-radius: 14px;
       text-decoration: none;
       color: white;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 14px;
       display: flex;
       align-items: center;
@@ -185,40 +210,50 @@
       transition: all 0.3s ease;
     }
 
-    .btn-hd { background: linear-gradient(45deg, #10b981, #059669); box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3); }
-    .btn-sd { background: linear-gradient(45deg, #3b82f6, #2563eb); box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); }
-    .btn-audio { background: linear-gradient(45deg, #8b5cf6, #7c3aed); box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3); }
+    .btn-hd { background: linear-gradient(135deg, #10B981 0%, #059669 100%); box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35); }
+    .btn-sd { background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%); box-shadow: 0 4px 20px rgba(59, 130, 246, 0.35); }
+    .btn-audio { background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%); box-shadow: 0 4px 20px rgba(139, 92, 246, 0.35); }
 
     .btn-dl:hover { transform: translateY(-2px); opacity: 0.95; }
 
-    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 30px; }
-    .feature-box { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 14px 8px; border-radius: 14px; text-align: center; }
-    .feature-icon { font-size: 20px; margin-bottom: 6px; }
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 32px; }
+    .feature-box { 
+      background: rgba(255, 255, 255, 0.03); 
+      border: 1px solid rgba(255, 255, 255, 0.08); 
+      padding: 16px 10px; 
+      border-radius: 16px; 
+      text-align: center; 
+    }
+    .feature-icon { font-size: 22px; margin-bottom: 6px; }
     .feature-title { font-size: 12px; font-weight: 700; color: #fff; }
-    .feature-desc { font-size: 10px; color: #888; margin-top: 2px; }
+    .feature-desc { font-size: 10px; color: #717888; margin-top: 3px; }
 
-    footer { margin-top: 24px; font-size: 12px; color: #666; }
+    footer { margin-top: 26px; font-size: 12px; color: #525866; }
   </style>
 </head>
 <body>
 
   <div class="wrapper">
     <div class="card">
-      <span class="badge">Fast & Free</span>
+      <span class="badge">⚡ Ultra Fast & Free</span>
       <div class="brand">TikTok Downloader</div>
-      <p class="subtitle">Unduh Video TikTok HD & Musik MP3 tanpa Watermark langsung ke perangkatmu.</p>
+      <p class="subtitle">Unduh Video TikTok HD & Musik MP3 Tanpa Watermark</p>
 
       <div class="input-wrapper">
-        <input type="text" id="tiktokUrl" placeholder="Tempel link TikTok..." oninput="toggleButtons()">
-        <button type="button" class="icon-btn btn-clear" id="btnClear" onclick="clearInput()">✖ Batal</button>
-        <button type="button" class="icon-btn" id="btnPaste" onclick="pasteUrl()">📋 Tempel</button>
+        <input type="text" id="tiktokUrl" placeholder="Tempel link TikTok..." oninput="updateActionBtn()">
+        
+        <!-- Satu Tombol Dinamis (Tempel / Batal) -->
+        <button type="button" class="btn-action-toggle" id="btnToggle" onclick="handleToggleAction()">
+          <span id="btnIcon">📋</span> <span id="btnText">Tempel</span>
+        </button>
+
         <button class="btn-submit" onclick="fetchVideo()">Proses</button>
       </div>
 
       <div class="loader" id="loader"></div>
 
       <div id="resultCard">
-        <p style="font-size: 14px; color: #25f4ee; font-weight: 700;">✨ Video siap diunduh!</p>
+        <p style="font-size: 14px; color: #00F2FE; font-weight: 800;">✨ Video Siap Diunduh!</p>
         <div class="action-btns">
           <a id="btnHd" class="btn-dl btn-hd" href="#" target="_blank" download>🚀 Download Video HD (Tanpa WM)</a>
           <a id="btnSd" class="btn-dl btn-sd" href="#" target="_blank" download>📹 Download Video SD</a>
@@ -249,31 +284,49 @@
   </div>
 
   <script>
-    async function pasteUrl() {
-      try {
-        const text = await navigator.clipboard.readText();
-        if (text) {
-          document.getElementById('tiktokUrl').value = text;
-          toggleButtons();
+    // Fungsi Menangani Klik pada Tombol Dinamis
+    async function handleToggleAction() {
+      const input = document.getElementById('tiktokUrl');
+      
+      // Jika kolom sudah ada isinya -> Fungsi Hapus/Batal
+      if (input.value.length > 0) {
+        input.value = '';
+        document.getElementById('resultCard').style.display = 'none';
+        updateActionBtn();
+      } 
+      // Jika kolom masih kosong -> Fungsi Tempel dari Clipboard
+      else {
+        try {
+          const text = await navigator.clipboard.readText();
+          if (text) {
+            input.value = text;
+            updateActionBtn();
+          }
+        } catch (err) {
+          alert('Silakan gunakan opsi tempel biasa di perangkatmu.');
         }
-      } catch (err) {
-        alert('Gunakan kombinasi tombol Paste pada HP/Keyboard.');
       }
     }
 
-    function clearInput() {
-      document.getElementById('tiktokUrl').value = '';
-      document.getElementById('resultCard').style.display = 'none';
-      toggleButtons();
+    // Fungsi Memperbarui Tampilan Tombol Saat Mengetik/Mengisi Link
+    function updateActionBtn() {
+      const input = document.getElementById('tiktokUrl');
+      const btn = document.getElementById('btnToggle');
+      const btnIcon = document.getElementById('btnIcon');
+      const btnText = document.getElementById('btnText');
+
+      if (input.value.length > 0) {
+        btn.classList.add('is-cancel');
+        btnIcon.textContent = '✖';
+        btnText.textContent = 'Batal';
+      } else {
+        btn.classList.remove('is-cancel');
+        btnIcon.textContent = '📋';
+        btnText.textContent = 'Tempel';
+      }
     }
 
-    function toggleButtons() {
-      const val = document.getElementById('tiktokUrl').value;
-      const btnClear = document.getElementById('btnClear');
-      btnClear.style.display = val.length > 0 ? 'inline-flex' : 'none';
-    }
-
-    // Mengakses RapidAPI langsung dari browser
+    // Mengambil Data Video dari RapidAPI
     async function fetchVideo() {
       const videoUrl = document.getElementById('tiktokUrl').value.trim();
       const loader = document.getElementById('loader');
@@ -320,7 +373,7 @@
         }
       } catch (err) {
         loader.style.display = 'none';
-        alert('Terjadi kesalahan saat menghubungi API.');
+        alert('Terjadi kesalahan saat mengambil data video.');
       }
     }
   </script>
