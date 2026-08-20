@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TikTok Video & Audio Downloader Ultra</title>
+  
+  <!-- Logo Favicon "DT" di Tab Browser -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='28' fill='%23121212'/><text x='50%' y='68%' font-size='52' font-weight='900' font-family='Arial, sans-serif' text-anchor='middle' fill='%23FE2C55'>D<tspan fill='%2325F4EE'>T</tspan></text></svg>">
+
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; }
 
@@ -222,7 +226,6 @@
       resultCard.style.display = 'none';
 
       try {
-        // Menggunakan relative path /api/download untuk Vercel
         const response = await fetch('/api/download', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
