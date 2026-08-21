@@ -197,7 +197,9 @@
     }
 
     .thumb-wrapper {
+      position: relative;
       width: 140px;
+      height: 180px;
       flex-shrink: 0;
       border-radius: 12px;
       overflow: hidden;
@@ -212,6 +214,24 @@
       height: 100%;
       object-fit: cover;
       display: block;
+    }
+
+    /* Badge Durasi Video di Atas Thumbnail */
+    .duration-badge {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
 
     .info-wrapper {
@@ -254,7 +274,6 @@
     .btn-audio { background: linear-gradient(135deg, #8B5CF6, #6D28D9); }
     .btn-dl:hover { opacity: 0.9; transform: translateY(-1px); }
 
-    /* Tombol Reset / Download Lagi */
     .btn-reset {
       width: 100%;
       margin-top: 14px;
@@ -271,10 +290,9 @@
 
     .btn-reset:hover { background: rgba(0, 242, 254, 0.15); }
 
-    /* Responsif untuk Layar HP */
     @media (max-width: 500px) {
       .result-container { flex-direction: column; }
-      .thumb-wrapper { width: 100%; height: 200px; }
+      .thumb-wrapper { width: 100%; height: 220px; }
     }
 
     .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 28px; }
@@ -294,7 +312,6 @@
       <div class="brand">TikTok Downloader</div>
       <p class="subtitle">Unduh Video TikTok HD & Musik MP3 Tanpa Watermark</p>
 
-      <!-- Input Box (Bisa Disembunyikan Saat Hasil Keluar) -->
       <div class="input-wrapper" id="inputSection">
         <input type="text" id="tiktokUrl" placeholder="Tempel link TikTok..." oninput="updateActionBtn()">
         <button type="button" class="btn-action-toggle" id="btnToggle" onclick="handleToggleAction()">
@@ -303,7 +320,6 @@
         <button class="btn-submit" onclick="fetchVideo()">Proses</button>
       </div>
 
-      <!-- Loading Animation -->
       <div id="loader" class="dots-loader">
         <span></span>
         <span></span>
@@ -312,11 +328,14 @@
       </div>
       <p id="loadingMsg">Mengambil data, mohon tunggu beberapa detik...</p>
 
-      <!-- Result Card (Thumbnail + Download Options) -->
       <div id="resultCard">
         <div class="result-container">
           <div class="thumb-wrapper">
             <img id="videoThumb" src="" alt="Thumbnail Video">
+            <!-- Badge Durasi di Pojok Thumbnail -->
+            <div id="videoDuration" class="duration-badge" style="display: none;">
+              ⏱️ <span id="durationText">0:00</span>
+            </div>
           </div>
           <div class="info-wrapper">
             <div id="videoTitle" class="video-title">TikTok Video</div>
@@ -378,6 +397,14 @@
       }
     }
 
+    // Format detik ke format mm:ss (contoh: 85 detik -> 1:25)
+    function formatDuration(seconds) {
+      if (!seconds || isNaN(seconds)) return null;
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    }
+
     async function fetchVideo() {
       const videoUrl = document.getElementById('tiktokUrl').value.trim();
       const inputSection = document.getElementById('inputSection');
@@ -412,7 +439,6 @@
         msg.style.display = 'none';
 
         if (data && data.video && data.video.length > 0) {
-          // Sembunyikan Kotak Input setelah berhasil
           inputSection.style.display = 'none';
 
           const downloadUrl = data.video[0];
@@ -420,11 +446,21 @@
           const audioUrl = data.music ? data.music[0] : null;
           const coverUrl = data.cover || (data.images ? data.images[0] : 'https://via.placeholder.com/150');
           const title = data.description || 'Video TikTok';
+          
+          // Dapatkan & Format Durasi Video
+          const formattedDuration = formatDuration(data.duration);
 
           document.getElementById('videoThumb').src = coverUrl;
           document.getElementById('videoTitle').textContent = title;
           document.getElementById('btnHd').href = downloadUrlHd;
           document.getElementById('btnSd').href = downloadUrl;
+
+          if (formattedDuration) {
+            document.getElementById('durationText').textContent = formattedDuration;
+            document.getElementById('videoDuration').style.display = 'flex';
+          } else {
+            document.getElementById('videoDuration').style.display = 'none';
+          }
           
           if (audioUrl) {
             document.getElementById('btnAudio').href = audioUrl;
@@ -444,7 +480,6 @@
       }
     }
 
-    // Fungsi untuk kembali ke mode input link
     function resetDownloader() {
       document.getElementById('tiktokUrl').value = '';
       document.getElementById('resultCard').style.display = 'none';
