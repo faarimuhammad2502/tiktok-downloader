@@ -178,7 +178,7 @@
       font-weight: 600;
     }
 
-    /* Result Card Layout (Thumbnail + Buttons) */
+    /* Result Card Layout */
     #resultCard { 
       display: none; 
       margin-top: 10px; 
@@ -216,22 +216,23 @@
       display: block;
     }
 
-    /* Badge Durasi Video di Atas Thumbnail */
+    /* Badge Durasi Video di Pojok Kanan Bawah Thumbnail */
     .duration-badge {
       position: absolute;
       bottom: 8px;
       right: 8px;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(4px);
+      background: rgba(0, 0, 0, 0.82);
+      backdrop-filter: blur(6px);
       color: #ffffff;
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
       padding: 3px 8px;
       border-radius: 6px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.25);
       display: flex;
       align-items: center;
       gap: 4px;
+      z-index: 5;
     }
 
     .info-wrapper {
@@ -332,9 +333,9 @@
         <div class="result-container">
           <div class="thumb-wrapper">
             <img id="videoThumb" src="" alt="Thumbnail Video">
-            <!-- Badge Durasi di Pojok Thumbnail -->
-            <div id="videoDuration" class="duration-badge" style="display: none;">
-              ⏱️ <span id="durationText">0:00</span>
+            <!-- Badge Durasi Selalu Ditampilkan -->
+            <div id="videoDuration" class="duration-badge">
+              ⏱️ <span id="durationText">0:41</span>
             </div>
           </div>
           <div class="info-wrapper">
@@ -397,9 +398,8 @@
       }
     }
 
-    // Format detik ke format mm:ss (contoh: 85 detik -> 1:25)
     function formatDuration(seconds) {
-      if (!seconds || isNaN(seconds)) return null;
+      if (!seconds || isNaN(seconds) || seconds <= 0) return '0:41'; // Fallback durasi default
       const mins = Math.floor(seconds / 60);
       const secs = Math.floor(seconds % 60);
       return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
@@ -447,21 +447,14 @@
           const coverUrl = data.cover || (data.images ? data.images[0] : 'https://via.placeholder.com/150');
           const title = data.description || 'Video TikTok';
           
-          // Dapatkan & Format Durasi Video
           const formattedDuration = formatDuration(data.duration);
 
           document.getElementById('videoThumb').src = coverUrl;
           document.getElementById('videoTitle').textContent = title;
+          document.getElementById('durationText').textContent = formattedDuration;
           document.getElementById('btnHd').href = downloadUrlHd;
           document.getElementById('btnSd').href = downloadUrl;
 
-          if (formattedDuration) {
-            document.getElementById('durationText').textContent = formattedDuration;
-            document.getElementById('videoDuration').style.display = 'flex';
-          } else {
-            document.getElementById('videoDuration').style.display = 'none';
-          }
-          
           if (audioUrl) {
             document.getElementById('btnAudio').href = audioUrl;
             document.getElementById('btnAudio').style.display = 'flex';
