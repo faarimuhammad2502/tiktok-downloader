@@ -41,8 +41,9 @@
     .card {
       background: rgba(18, 20, 29, 0.85);
       backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 30px;
+      padding: 36px 28px;
       border-radius: 28px;
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
       text-align: center;
@@ -58,28 +59,36 @@
       font-size: 11px;
       font-weight: 800;
       margin-bottom: 16px;
+      letter-spacing: 1px;
     }
 
     .brand {
-      font-size: 30px;
+      font-size: 32px;
       font-weight: 900;
       margin-bottom: 8px;
-      background: linear-gradient(135deg, #00F2FE, #FF0050);
+      background: linear-gradient(135deg, #00F2FE 0%, #4FACFE 30%, #FF0050 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
     }
 
-    .subtitle { color: #a0a5ba; font-size: 13px; margin-bottom: 25px; }
+    .subtitle { color: #a0a5ba; font-size: 13px; margin-bottom: 25px; line-height: 1.5; }
 
     /* Input Wrapper Responsive */
     .input-wrapper {
       display: flex;
-      flex-wrap: wrap; /* Tombol otomatis turun di layar kecil */
+      flex-wrap: wrap;
       gap: 8px;
       background: rgba(10, 11, 16, 0.85);
       padding: 8px;
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 18px;
+      transition: all 0.3s ease;
+    }
+
+    .input-wrapper:focus-within {
+      border-color: #00F2FE;
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
     }
 
     input {
@@ -93,50 +102,119 @@
       outline: none;
     }
 
+    input::placeholder { color: #525866; }
+
     .btn-action-toggle, .btn-submit {
       padding: 12px 16px;
       border-radius: 12px;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
       border: none;
-      transition: all 0.3s;
+      transition: all 0.3s ease;
+      font-size: 13px;
     }
 
-    .btn-action-toggle { background: rgba(255, 255, 255, 0.08); color: #00F2FE; }
-    .btn-action-toggle.is-cancel { background: rgba(255, 0, 80, 0.15); color: #FF0050; }
+    .btn-action-toggle { 
+      background: rgba(255, 255, 255, 0.08); 
+      color: #00F2FE; 
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-action-toggle.is-cancel { 
+      background: rgba(255, 0, 80, 0.15); 
+      color: #FF0050; 
+      border-color: rgba(255, 0, 80, 0.3);
+    }
     
     .btn-submit {
       flex-grow: 1;
-      background: linear-gradient(135deg, #FF0050, #7F00FF);
+      background: linear-gradient(135deg, #FF0050 0%, #7F00FF 100%);
       color: white;
+      box-shadow: 0 4px 15px rgba(255, 0, 80, 0.4);
     }
 
-    .loader {
+    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 0, 80, 0.6); }
+
+    /* Animation Dots Loading Persis Seperti X2Twitter */
+    .dots-loader {
       display: none;
-      margin: 20px auto;
-      border: 3px solid rgba(255,255,255,0.1);
-      border-top: 3px solid #00F2FE;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      animation: spin 0.8s linear infinite;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin: 25px auto 10px;
     }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-    #resultCard { display: none; margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
-    .btn-dl { padding: 12px; border-radius: 12px; text-decoration: none; color: white; font-weight: 700; display: block; margin-bottom: 10px; }
-    .btn-hd { background: #10B981; }
-    .btn-sd { background: #3B82F6; }
-    .btn-audio { background: #8B5CF6; }
+    .dots-loader span {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      animation: pulseDots 1.4s infinite ease-in-out both;
+    }
+
+    .dots-loader span:nth-child(1) { animation-delay: -0.32s; background: #00F2FE; box-shadow: 0 0 12px rgba(0, 242, 254, 0.8); }
+    .dots-loader span:nth-child(2) { animation-delay: -0.16s; background: #4FACFE; box-shadow: 0 0 12px rgba(79, 172, 254, 0.8); }
+    .dots-loader span:nth-child(3) { animation-delay: 0s; background: #FF0050; box-shadow: 0 0 12px rgba(255, 0, 80, 0.8); }
+    .dots-loader span:nth-child(4) { animation-delay: 0.16s; background: #7F00FF; box-shadow: 0 0 12px rgba(127, 0, 255, 0.8); }
+
+    @keyframes pulseDots {
+      0%, 80%, 100% { 
+        transform: scale(0.35);
+        opacity: 0.3;
+      } 
+      40% { 
+        transform: scale(1.2);
+        opacity: 1;
+      }
+    }
+
+    #loadingMsg {
+      display: none;
+      font-size: 13px;
+      color: #00F2FE;
+      margin-top: 8px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    #resultCard { display: none; margin-top: 24px; padding-top: 22px; border-top: 1px solid rgba(255, 255, 255, 0.1); animation: fadeIn 0.4s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .action-btns { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+
+    .btn-dl { 
+      padding: 14px; 
+      border-radius: 12px; 
+      text-decoration: none; 
+      color: white; 
+      font-weight: 800; 
+      font-size: 14px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      gap: 8px;
+      transition: all 0.3s; 
+    }
+    .btn-hd { background: linear-gradient(135deg, #10B981, #059669); box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3); }
+    .btn-sd { background: linear-gradient(135deg, #3B82F6, #1D4ED8); box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); }
+    .btn-audio { background: linear-gradient(135deg, #8B5CF6, #6D28D9); box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3); }
+    .btn-dl:hover { transform: translateY(-2px); opacity: 0.95; }
+
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 28px; }
+    .feature-box { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 14px 8px; border-radius: 14px; text-align: center; }
+    .feature-icon { font-size: 20px; margin-bottom: 4px; }
+    .feature-title { font-size: 11px; font-weight: 700; color: #fff; }
+    .feature-desc { font-size: 9px; color: #717888; margin-top: 2px; }
+
+    footer { margin-top: 24px; font-size: 11px; color: #525866; }
   </style>
 </head>
 <body>
 
   <div class="wrapper">
     <div class="card">
-      <span class="badge">⚡ ULTRA FAST</span>
+      <span class="badge">⚡ ULTRA FAST & FREE</span>
       <div class="brand">TikTok Downloader</div>
-      <p class="subtitle">Download Video & Musik Tanpa Watermark</p>
+      <p class="subtitle">Unduh Video TikTok HD & Musik MP3 Tanpa Watermark</p>
 
       <div class="input-wrapper">
         <input type="text" id="tiktokUrl" placeholder="Tempel link TikTok..." oninput="updateActionBtn()">
@@ -146,15 +224,43 @@
         <button class="btn-submit" onclick="fetchVideo()">Proses</button>
       </div>
 
-      <div id="loader" class="loader"></div>
-      <p id="loadingMsg" style="display:none; font-size: 12px; color: #a0a5ba; margin-top: 10px;"></p>
+      <!-- Loading Dots Bergelombang Persis Seperti X2Twitter -->
+      <div id="loader" class="dots-loader">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <p id="loadingMsg">Mengambil data, mohon tunggu beberapa detik...</p>
 
       <div id="resultCard">
-        <p style="margin-bottom: 15px; color: #00F2FE;">✨ Video siap diunduh!</p>
-        <a id="btnHd" class="btn-dl btn-hd" href="#" target="_blank" download>🚀 HD Video</a>
-        <a id="btnSd" class="btn-dl btn-sd" href="#" target="_blank" download>📹 SD Video</a>
-        <a id="btnAudio" class="btn-dl btn-audio" href="#" target="_blank" download>🎵 Audio MP3</a>
+        <p style="margin-bottom: 12px; color: #00F2FE; font-weight: 800;">✨ Video siap diunduh!</p>
+        <div class="action-btns">
+          <a id="btnHd" class="btn-dl btn-hd" href="#" target="_blank" download>🚀 Download Video HD (Tanpa WM)</a>
+          <a id="btnSd" class="btn-dl btn-sd" href="#" target="_blank" download>📹 Download Video SD</a>
+          <a id="btnAudio" class="btn-dl btn-audio" href="#" target="_blank" download>🎵 Download Audio Only (MP3)</a>
+        </div>
       </div>
+
+      <div class="features">
+        <div class="feature-box">
+          <div class="feature-icon">⚡</div>
+          <div class="feature-title">Super Cepat</div>
+          <div class="feature-desc">Proses instan 2 detik</div>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon">💧</div>
+          <div class="feature-title">No Watermark</div>
+          <div class="feature-desc">Hasil bersih & jernih</div>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon">🔒</div>
+          <div class="feature-title">100% Aman</div>
+          <div class="feature-desc">Tanpa login/daftar</div>
+        </div>
+      </div>
+
+      <footer>© 2026 TikTok Pro Downloader — All Rights Reserved</footer>
     </div>
   </div>
 
@@ -169,7 +275,7 @@
         try {
           const text = await navigator.clipboard.readText();
           if (text) { input.value = text; updateActionBtn(); }
-        } catch (err) { alert('Gunakan tempel manual.'); }
+        } catch (err) { alert('Gunakan tempel manual pada perangkatmu.'); }
       }
     }
 
@@ -191,14 +297,18 @@
       const msg = document.getElementById('loadingMsg');
       const resultCard = document.getElementById('resultCard');
 
-      if (!videoUrl) return alert('Tempel link dulu!');
+      if (!videoUrl) return alert('Silakan tempelkan link video TikTok terlebih dahulu!');
       
-      loader.style.display = 'block';
+      loader.style.display = 'flex';
       msg.style.display = 'block';
-      msg.textContent = 'Menghubungkan ke server...';
+      msg.textContent = 'Mengambil data, mohon tunggu beberapa detik...';
       resultCard.style.display = 'none';
 
-      setTimeout(() => msg.textContent = 'Memproses video...', 1500);
+      setTimeout(() => {
+        if (loader.style.display === 'flex') {
+          msg.textContent = 'Memproses video tanpa watermark...';
+        }
+      }, 1500);
 
       try {
         const res = await fetch(`https://tiktok-downloader-download-tiktok-videos-without-watermark.p.rapidapi.com/index?url=${encodeURIComponent(videoUrl)}`, {
@@ -209,15 +319,34 @@
           }
         });
         const data = await res.json();
-        loader.style.display = 'none'; msg.style.display = 'none';
+        
+        loader.style.display = 'none'; 
+        msg.style.display = 'none';
 
-        if (data?.video?.length > 0) {
-          document.getElementById('btnHd').href = data.video[1] || data.video[0];
-          document.getElementById('btnSd').href = data.video[0];
-          if(data.music) document.getElementById('btnAudio').href = data.music[0];
+        if (data && data.video && data.video.length > 0) {
+          const downloadUrl = data.video[0];
+          const downloadUrlHd = data.video[1] || downloadUrl;
+          const audioUrl = data.music ? data.music[0] : null;
+
+          document.getElementById('btnHd').href = downloadUrlHd;
+          document.getElementById('btnSd').href = downloadUrl;
+          
+          if (audioUrl) {
+            document.getElementById('btnAudio').href = audioUrl;
+            document.getElementById('btnAudio').style.display = 'flex';
+          } else {
+            document.getElementById('btnAudio').style.display = 'none';
+          }
+
           resultCard.style.display = 'block';
-        } else { alert('Gagal memproses link.'); }
-      } catch (err) { loader.style.display = 'none'; msg.style.display = 'none'; alert('Terjadi kesalahan.'); }
+        } else { 
+          alert('Gagal mengambil data video. Pastikan link publik dan benar.'); 
+        }
+      } catch (err) { 
+        loader.style.display = 'none'; 
+        msg.style.display = 'none'; 
+        alert('Terjadi kesalahan saat menghubungi server.'); 
+      }
     }
   </script>
 </body>
