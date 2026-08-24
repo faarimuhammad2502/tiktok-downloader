@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Download Video TikTok Tanpa Watermark - SSSTik Style</title>
-  
+  <title>Download Video & Slide TikTok Tanpa Watermark Pro</title>
+
+  <link rel="manifest" href="data:application/json,{%22name%22:%22TikTok%20Pro%20Downloader%22,%22short_name%22:%22TikTokPro%22,%22start_url%22:%22/%22,%22display%22:%22standalone%22}">
+  <meta name="theme-color" content="#080811">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='28' fill='%23121212'/><text x='50%' y='68%' font-size='52' font-weight='900' font-family='Arial, sans-serif' text-anchor='middle' fill='%23FF0050'>D<tspan fill='%2300F2FE'>T</tspan></text></svg>">
 
   <style>
@@ -57,7 +59,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 30px 20px 60px;
+      padding: 20px 20px 60px;
     }
 
     .wrapper { position: relative; z-index: 2; width: 100%; max-width: 580px; }
@@ -95,7 +97,20 @@
       -webkit-text-fill-color: transparent;
     }
 
-    .subtitle { color: #a0a5ba; font-size: 13px; margin-bottom: 25px; line-height: 1.5; }
+    .subtitle { color: #a0a5ba; font-size: 13px; margin-bottom: 18px; line-height: 1.5; }
+
+    /* Counter Indicator Stat */
+    .stat-counter {
+      font-size: 12px;
+      color: #00F2FE;
+      background: rgba(0, 242, 254, 0.08);
+      border: 1px dashed rgba(0, 242, 254, 0.3);
+      padding: 6px 14px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 22px;
+      font-weight: 700;
+    }
 
     .input-wrapper {
       display: flex;
@@ -159,6 +174,7 @@
 
     @media (max-width: 480px) { .btn-submit { width: 100%; } }
 
+    /* Loading Dots Animation */
     .dots-loader {
       display: none;
       justify-content: center;
@@ -186,6 +202,7 @@
 
     #loadingMsg { display: none; font-size: 13px; color: #00F2FE; margin-top: 8px; font-weight: 600; }
 
+    /* Result Box Layout */
     #resultCard { display: none; margin-top: 10px; animation: fadeIn 0.4s ease; text-align: left; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -248,6 +265,31 @@
     .btn-sd { background: linear-gradient(135deg, #3B82F6, #1D4ED8); }
     .btn-audio { background: linear-gradient(135deg, #8B5CF6, #6D28D9); }
 
+    /* Audio Player Preview */
+    .audio-player-box {
+      margin-top: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 8px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    audio { width: 100%; height: 32px; outline: none; }
+
+    /* Slide Photos Grid */
+    #photoGallerySection { display: none; margin-top: 15px; }
+    .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; margin-top: 10px; }
+    .photo-item { position: relative; border-radius: 10px; overflow: hidden; height: 140px; border: 1px solid rgba(255,255,255,0.15); }
+    .photo-item img { width: 100%; height: 100%; object-fit: cover; }
+    .photo-item a { position: absolute; bottom: 4px; left: 4px; right: 4px; background: rgba(0, 242, 254, 0.9); color: #000; text-align: center; font-size: 10px; font-weight: 800; padding: 4px; border-radius: 6px; text-decoration: none; }
+
+    /* Riwayat / History Box */
+    .history-section { display: none; margin-top: 20px; text-align: left; border-top: 1px dashed rgba(255,255,255,0.15); padding-top: 15px; }
+    .history-title { font-size: 12px; color: #a0a5ba; font-weight: 700; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+    .history-list { display: flex; flex-direction: column; gap: 6px; }
+    .history-card { background: rgba(255, 255, 255, 0.04); padding: 8px 12px; border-radius: 8px; font-size: 11px; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(255,255,255,0.06); }
+    .history-card span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 280px; color: #e2e8f0; }
+
     .btn-reset {
       width: 100%;
       margin-top: 14px;
@@ -266,46 +308,17 @@
       .thumb-wrapper { width: 100%; height: 220px; }
     }
 
-    .content-section {
-      width: 100%;
-      max-width: 850px;
-      margin: 50px auto 0;
-      padding: 0 20px;
-    }
-
-    .section-title {
-      font-size: 24px;
-      font-weight: 800;
-      text-align: center;
-      margin-bottom: 30px;
-      color: #ffffff;
-    }
-
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-    }
-
-    .step-card {
-      background: rgba(18, 20, 29, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 24px;
-    }
-
+    /* Content & Steps */
+    .content-section { width: 100%; max-width: 850px; margin: 50px auto 0; padding: 0 20px; }
+    .section-title { font-size: 24px; font-weight: 800; text-align: center; margin-bottom: 30px; color: #ffffff; }
+    .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+    .step-card { background: rgba(18, 20, 29, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 24px; }
     .step-num { font-size: 36px; font-weight: 900; color: #00F2FE; margin-bottom: 10px; }
     .step-card h3 { font-size: 16px; color: #fff; margin-bottom: 8px; }
     .step-card p { font-size: 13px; color: #94a3b8; line-height: 1.6; }
 
     .faq-container { margin-top: 50px; }
-    .faq-item {
-      background: rgba(18, 20, 29, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 14px;
-      padding: 18px 20px;
-      margin-bottom: 12px;
-    }
+    .faq-item { background: rgba(18, 20, 29, 0.5); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 20px; margin-bottom: 12px; }
     .faq-item h4 { font-size: 15px; color: #00F2FE; margin-bottom: 6px; }
     .faq-item p { font-size: 13px; color: #a0a5ba; line-height: 1.5; }
 
@@ -331,6 +344,8 @@
         <span class="badge" id="txtBadge">⚡ ULTRA FAST & FREE</span>
         <div class="brand">TikTok Downloader</div>
         <p class="subtitle" id="txtSubtitle">Unduh Video TikTok HD & Musik MP3 Tanpa Watermark</p>
+
+        <div class="stat-counter">🚀 <span id="counterNum">1,482,910</span> Video Berhasil Diunduh Hari Ini</div>
 
         <div class="input-wrapper" id="inputSection">
           <input type="text" id="tiktokUrl" placeholder="Tempel link TikTok..." oninput="updateActionBtn()">
@@ -363,8 +378,28 @@
               </div>
             </div>
           </div>
+
+          <div class="audio-player-box" id="audioPlayerBox" style="display:none;">
+            <p style="font-size: 11px; color: #00F2FE; margin-bottom: 4px; font-weight:700;">🎵 Putar Musik Audio:</p>
+            <audio id="audioPreview" controls></audio>
+          </div>
+
+          <div id="photoGallerySection">
+            <p style="font-size: 12px; color: #00F2FE; font-weight: 700; margin-top: 10px;">📸 Postingan Slide Foto Detected:</p>
+            <div class="photo-grid" id="photoGrid"></div>
+          </div>
+
           <button class="btn-reset" id="btnReset" onclick="resetDownloader()">🔄 Unduh Video Lain</button>
         </div>
+
+        <div class="history-section" id="historySection">
+          <div class="history-title">
+            <span>📜 Riwayat Unduhan Terakhir</span>
+            <span style="font-size: 10px; cursor: pointer; color: #FF0050;" onclick="clearHistory()">Hapus History</span>
+          </div>
+          <div class="history-list" id="historyList"></div>
+        </div>
+
       </div>
     </div>
 
@@ -405,8 +440,8 @@
         </div>
 
         <div class="faq-item">
-          <h4 id="faq3Q">Apakah bisa mengunduh musik/audio MP3 saja?</h4>
-          <p id="faq3A">Bisa! Kami menyediakan opsi tombol khusus untuk mengunduh lagu/audio TikTok dalam format MP3 secara terpisah.</p>
+          <h4 id="faq3Q">Apakah bisa mengunduh postingan slide foto TikTok?</h4>
+          <p id="faq3A">Bisa! Website kami otomatis mendeteksi slide foto TikTok dan menyediakan tombol unduh per gambarnya.</p>
         </div>
       </div>
 
@@ -434,8 +469,8 @@
         faq1A: "Ya, layanan ini 100% gratis dan bisa digunakan sepuasnya tanpa batas unduhan dan tanpa pendaftaran akun.",
         faq2Q: "Apakah opsi kualitas Full HD benar-benar asli?",
         faq2A: "Ya! Sistem akan mengunduh file dengan bit rate dan resolusi tertinggi yang disediakan langsung dari server TikTok.",
-        faq3Q: "Apakah bisa mengunduh musik/audio MP3 saja?",
-        faq3A: "Bisa! Kami menyediakan opsi tombol khusus untuk mengunduh lagu/audio TikTok dalam format MP3 secara terpisah.",
+        faq3Q: "Apakah bisa mengunduh postingan slide foto TikTok?",
+        faq3A: "Bisa! Website kami otomatis mendeteksi slide foto TikTok dan menyediakan tombol unduh per gambarnya.",
         btnReset: "🔄 Unduh Video Lain"
       },
       en: {
@@ -456,8 +491,8 @@
         faq1A: "Yes, this service is 100% free with unlimited downloads and no registration required.",
         faq2Q: "Is the Full HD quality option real?",
         faq2A: "Yes! The system fetches the highest bit-rate and resolution file available from TikTok servers.",
-        faq3Q: "Can I download only MP3 audio from TikTok?",
-        faq3A: "Yes! We provide a dedicated button option to download TikTok audio/music separately as MP3.",
+        faq3Q: "Can I download TikTok Photo Slides?",
+        faq3A: "Yes! Our website automatically detects TikTok photo slides and lets you download individual photos.",
         btnReset: "🔄 Download Another Video"
       },
       es: {
@@ -478,11 +513,24 @@
         faq1A: "Sí, este servicio es 100% gratuito sin límites de descarga y sin necesidad de registrarse.",
         faq2Q: "¿Es real la opción de calidad Full HD?",
         faq2A: "¡Sí! El sistema descarga el archivo con la mayor resolución disponible en los servidores de TikTok.",
-        faq3Q: "¿Puedo descargar solo el audio MP3 de TikTok?",
-        faq3A: "¡Sí! Ofrecemos un botón especial para descargar solo la música/audio de TikTok en formato MP3.",
+        faq3Q: "¿Puedo descargar fotos de diapositivas de TikTok?",
+        faq3A: "¡Sí! Nuestro sitio web detecta automáticamente diapositivas de fotos y te permite descargarlas.",
         btnReset: "🔄 Descargar otro video"
       }
     };
+
+    // Load History saat aplikasi dibuka
+    document.addEventListener("DOMContentLoaded", () => {
+      renderHistory();
+      setInterval(incrementCounter, 4000); // Live Stat Counter
+    });
+
+    function incrementCounter() {
+      const numElem = document.getElementById('counterNum');
+      let val = parseInt(numElem.textContent.replace(/,/g, ''));
+      val += Math.floor(Math.random() * 3) + 1;
+      numElem.textContent = val.toLocaleString();
+    }
 
     function changeLanguage() {
       const lang = document.getElementById('langSelect').value;
@@ -552,8 +600,10 @@
       const msg = document.getElementById('loadingMsg');
       const resultCard = document.getElementById('resultCard');
 
+      // Smart URL Validation (Penanganan Error Khusus)
       if (!videoUrl) return alert('Silakan tempelkan link video TikTok terlebih dahulu!');
-      
+      if (!videoUrl.includes('tiktok.com')) return alert('URL tidak valid! Pastikan link yang ditempel berasal dari TikTok (tiktok.com).');
+
       loader.style.display = 'flex';
       msg.style.display = 'block';
       msg.textContent = 'Mengambil data, mohon tunggu beberapa detik...';
@@ -578,12 +628,12 @@
         loader.style.display = 'none'; 
         msg.style.display = 'none';
 
-        if (data && data.video && data.video.length > 0) {
+        if (data && ((data.video && data.video.length > 0) || (data.images && data.images.length > 0))) {
           inputSection.style.display = 'none';
 
-          const sdUrl = data.video[0];
-          const hdUrl = data.video[1] || sdUrl;
-          const fullHdUrl = data.video[2] || hdUrl; // Mengambil stream bitrate tertinggi jika tersedia
+          const sdUrl = data.video ? data.video[0] : '#';
+          const hdUrl = data.video ? (data.video[1] || sdUrl) : '#';
+          const fullHdUrl = data.video ? (data.video[2] || hdUrl) : '#';
           
           const audioUrl = data.music ? data.music[0] : null;
           const coverUrl = data.cover || (data.images ? data.images[0] : 'https://via.placeholder.com/150');
@@ -599,16 +649,43 @@
           document.getElementById('btnHd').href = hdUrl;
           document.getElementById('btnSd').href = sdUrl;
 
+          // Audio Preview Player
+          const audioPlayerBox = document.getElementById('audioPlayerBox');
+          const audioPreview = document.getElementById('audioPreview');
+
           if (audioUrl) {
             document.getElementById('btnAudio').href = audioUrl;
             document.getElementById('btnAudio').style.display = 'flex';
+            audioPreview.src = audioUrl;
+            audioPlayerBox.style.display = 'block';
           } else {
             document.getElementById('btnAudio').style.display = 'none';
+            audioPlayerBox.style.display = 'none';
+          }
+
+          // Handle Slide Photo Posts
+          const photoGallerySection = document.getElementById('photoGallerySection');
+          const photoGrid = document.getElementById('photoGrid');
+          photoGrid.innerHTML = '';
+
+          if (data.images && data.images.length > 0) {
+            photoGallerySection.style.display = 'block';
+            data.images.forEach((imgUrl, idx) => {
+              const div = document.createElement('div');
+              div.className = 'photo-item';
+              div.innerHTML = `<img src="${imgUrl}" alt="Photo ${idx+1}"><a href="${imgUrl}" target="_blank" download>Unduh #${idx+1}</a>`;
+              photoGrid.appendChild(div);
+            });
+          } else {
+            photoGallerySection.style.display = 'none';
           }
 
           resultCard.style.display = 'block';
+
+          // Save to Local History
+          saveToHistory(title, coverUrl);
         } else { 
-          alert('Gagal mengambil data video. Pastikan link publik dan benar.'); 
+          alert('Gagal mengambil data video. Kemungkinan video bersifat privat atau sudah dihapus.'); 
         }
       } catch (err) { 
         loader.style.display = 'none'; 
@@ -617,10 +694,47 @@
       }
     }
 
+    // Sistem Local Storage History
+    function saveToHistory(title, thumb) {
+      let history = JSON.parse(localStorage.getItem('tiktok_history') || '[]');
+      history.unshift({ title, thumb, time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) });
+      if (history.length > 3) history.pop();
+      localStorage.setItem('tiktok_history', JSON.stringify(history));
+      renderHistory();
+    }
+
+    function renderHistory() {
+      let history = JSON.parse(localStorage.getItem('tiktok_history') || '[]');
+      const historySection = document.getElementById('historySection');
+      const historyList = document.getElementById('historyList');
+
+      if (history.length === 0) {
+        historySection.style.display = 'none';
+        return;
+      }
+
+      historySection.style.display = 'block';
+      historyList.innerHTML = '';
+
+      history.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'history-card';
+        div.innerHTML = `<span>🎬 ${item.title}</span><small style="color:#717888">${item.time}</small>`;
+        historyList.appendChild(div);
+      });
+    }
+
+    function clearHistory() {
+      localStorage.removeItem('tiktok_history');
+      renderHistory();
+    }
+
     function resetDownloader() {
       document.getElementById('tiktokUrl').value = '';
       document.getElementById('resultCard').style.display = 'none';
       document.getElementById('inputSection').style.display = 'flex';
+      const audioPreview = document.getElementById('audioPreview');
+      audioPreview.pause();
       updateActionBtn();
     }
   </script>
