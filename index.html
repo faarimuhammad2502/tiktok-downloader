@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TikTok Video & Audio Downloader Ultra</title>
+  <title>Download Video TikTok Tanpa Watermark - SSSTik Style</title>
   
-  <!-- Logo Favicon "DT" di Tab Browser -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='28' fill='%23121212'/><text x='50%' y='68%' font-size='52' font-weight='900' font-family='Arial, sans-serif' text-anchor='middle' fill='%23FF0050'>D<tspan fill='%2300F2FE'>T</tspan></text></svg>">
 
   <style>
@@ -13,10 +12,6 @@
 
     body {
       min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
       color: #ffffff;
       background: radial-gradient(circle at 10% 10%, #1a0033 0%, #080811 50%, #001a2e 100%);
       background-attachment: fixed;
@@ -24,16 +19,54 @@
       overflow-x: hidden;
     }
 
-    body::after {
-      content: "";
-      position: absolute;
-      width: 380px;
-      height: 380px;
-      background: linear-gradient(135deg, rgba(0, 242, 254, 0.25), rgba(255, 0, 80, 0.25));
-      filter: blur(100px);
-      border-radius: 50%;
-      z-index: 0;
-      pointer-events: none;
+    /* Header Navigasi & Pengaturan Bahasa */
+    header {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .logo-area {
+      font-size: 20px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #00F2FE, #FF0050);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .lang-select-wrapper {
+      position: relative;
+    }
+
+    .lang-select {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #00F2FE;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .lang-select option {
+      background: #080811;
+      color: #fff;
+    }
+
+    /* Container Utama Downloader */
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 20px 60px;
     }
 
     .wrapper { position: relative; z-index: 2; width: 100%; max-width: 580px; }
@@ -69,12 +102,10 @@
       background: linear-gradient(135deg, #00F2FE 0%, #4FACFE 30%, #FF0050 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      letter-spacing: -0.5px;
     }
 
     .subtitle { color: #a0a5ba; font-size: 13px; margin-bottom: 25px; line-height: 1.5; }
 
-    /* Input Box Wrapper */
     .input-wrapper {
       display: flex;
       flex-wrap: wrap;
@@ -84,7 +115,6 @@
       padding: 6px;
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 18px;
-      transition: all 0.3s ease;
     }
 
     .input-wrapper:focus-within {
@@ -113,7 +143,6 @@
       border: 1px solid rgba(255, 255, 255, 0.15);
       background: rgba(255, 255, 255, 0.08); 
       color: #00F2FE; 
-      transition: all 0.25s ease;
       font-size: 13px;
       white-space: nowrap;
     }
@@ -134,17 +163,12 @@
       color: white;
       box-shadow: 0 4px 15px rgba(255, 0, 80, 0.4);
       font-size: 13px;
-      transition: all 0.3s ease;
       white-space: nowrap;
     }
 
-    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 0, 80, 0.6); }
+    @media (max-width: 480px) { .btn-submit { width: 100%; } }
 
-    @media (max-width: 480px) {
-      .btn-submit { width: 100%; }
-    }
-
-    /* Animation Loading Dots */
+    /* Loading Animation Dots */
     .dots-loader {
       display: none;
       justify-content: center;
@@ -160,31 +184,20 @@
       animation: pulseDots 1.4s infinite ease-in-out both;
     }
 
-    .dots-loader span:nth-child(1) { animation-delay: -0.32s; background: #00F2FE; box-shadow: 0 0 12px rgba(0, 242, 254, 0.8); }
-    .dots-loader span:nth-child(2) { animation-delay: -0.16s; background: #4FACFE; box-shadow: 0 0 12px rgba(79, 172, 254, 0.8); }
-    .dots-loader span:nth-child(3) { animation-delay: 0s; background: #FF0050; box-shadow: 0 0 12px rgba(255, 0, 80, 0.8); }
-    .dots-loader span:nth-child(4) { animation-delay: 0.16s; background: #7F00FF; box-shadow: 0 0 12px rgba(127, 0, 255, 0.8); }
+    .dots-loader span:nth-child(1) { animation-delay: -0.32s; background: #00F2FE; }
+    .dots-loader span:nth-child(2) { animation-delay: -0.16s; background: #4FACFE; }
+    .dots-loader span:nth-child(3) { animation-delay: 0s; background: #FF0050; }
+    .dots-loader span:nth-child(4) { animation-delay: 0.16s; background: #7F00FF; }
 
     @keyframes pulseDots {
       0%, 80%, 100% { transform: scale(0.35); opacity: 0.3; } 
       40% { transform: scale(1.2); opacity: 1; }
     }
 
-    #loadingMsg {
-      display: none;
-      font-size: 13px;
-      color: #00F2FE;
-      margin-top: 8px;
-      font-weight: 600;
-    }
+    #loadingMsg { display: none; font-size: 13px; color: #00F2FE; margin-top: 8px; font-weight: 600; }
 
     /* Result Card Layout */
-    #resultCard { 
-      display: none; 
-      margin-top: 10px; 
-      animation: fadeIn 0.4s ease; 
-      text-align: left;
-    }
+    #resultCard { display: none; margin-top: 10px; animation: fadeIn 0.4s ease; text-align: left; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
     .result-container {
@@ -209,51 +222,23 @@
       justify-content: center;
     }
 
-    .thumb-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    .thumb-wrapper img { width: 100%; height: 100%; object-fit: cover; }
 
-    /* Badge Durasi Video di Pojok Kanan Bawah Thumbnail */
     .duration-badge {
       position: absolute;
       bottom: 8px;
       right: 8px;
       background: rgba(0, 0, 0, 0.82);
-      backdrop-filter: blur(6px);
       color: #ffffff;
       font-size: 11px;
       font-weight: 800;
       padding: 3px 8px;
       border-radius: 6px;
       border: 1px solid rgba(255, 255, 255, 0.25);
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      z-index: 5;
     }
 
-    .info-wrapper {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .video-title {
-      font-size: 13px;
-      color: #e2e8f0;
-      line-height: 1.4;
-      font-weight: 600;
-      margin-bottom: 12px;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
+    .info-wrapper { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .video-title { font-size: 13px; color: #e2e8f0; line-height: 1.4; font-weight: 600; margin-bottom: 12px; }
     .action-btns { display: flex; flex-direction: column; gap: 8px; }
 
     .btn-dl { 
@@ -267,13 +252,11 @@
       align-items: center; 
       justify-content: center; 
       gap: 6px;
-      transition: all 0.25s; 
     }
 
     .btn-hd { background: linear-gradient(135deg, #10B981, #059669); }
     .btn-sd { background: linear-gradient(135deg, #3B82F6, #1D4ED8); }
     .btn-audio { background: linear-gradient(135deg, #8B5CF6, #6D28D9); }
-    .btn-dl:hover { opacity: 0.9; transform: translateY(-1px); }
 
     .btn-reset {
       width: 100%;
@@ -286,93 +269,289 @@
       font-weight: 700;
       font-size: 13px;
       cursor: pointer;
-      transition: all 0.3s;
     }
-
-    .btn-reset:hover { background: rgba(0, 242, 254, 0.15); }
 
     @media (max-width: 500px) {
       .result-container { flex-direction: column; }
       .thumb-wrapper { width: 100%; height: 220px; }
     }
 
-    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 28px; }
-    .feature-box { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 14px 8px; border-radius: 14px; text-align: center; }
-    .feature-icon { font-size: 20px; margin-bottom: 4px; }
-    .feature-title { font-size: 11px; font-weight: 700; color: #fff; }
-    .feature-desc { font-size: 9px; color: #717888; margin-top: 2px; }
+    /* SECTION KHAS SSSTIK: LANGKAH-LANGKAH & INFORMASI */
+    .content-section {
+      width: 100%;
+      max-width: 850px;
+      margin: 50px auto 0;
+      padding: 0 20px;
+    }
 
-    footer { margin-top: 24px; font-size: 11px; color: #525866; text-align: center; }
+    .section-title {
+      font-size: 24px;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #ffffff;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .step-card {
+      background: rgba(18, 20, 29, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 24px;
+      position: relative;
+    }
+
+    .step-num {
+      font-size: 36px;
+      font-weight: 900;
+      color: #00F2FE;
+      margin-bottom: 10px;
+      line-height: 1;
+    }
+
+    .step-card h3 {
+      font-size: 16px;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .step-card p {
+      font-size: 13px;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+
+    /* FAQ Section */
+    .faq-container {
+      margin-top: 50px;
+    }
+
+    .faq-item {
+      background: rgba(18, 20, 29, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 12px;
+    }
+
+    .faq-item h4 {
+      font-size: 15px;
+      color: #00F2FE;
+      margin-bottom: 6px;
+    }
+
+    .faq-item p {
+      font-size: 13px;
+      color: #a0a5ba;
+      line-height: 1.5;
+    }
+
+    footer { margin-top: 50px; font-size: 12px; color: #525866; text-align: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; }
   </style>
 </head>
 <body>
 
-  <div class="wrapper">
-    <div class="card">
-      <span class="badge">⚡ ULTRA FAST & FREE</span>
-      <div class="brand">TikTok Downloader</div>
-      <p class="subtitle">Unduh Video TikTok HD & Musik MP3 Tanpa Watermark</p>
+  <header>
+    <div class="logo-area">TikTok Pro</div>
+    <div class="lang-select-wrapper">
+      <select class="lang-select" id="langSelect" onchange="changeLanguage()">
+        <option value="id">🌐 Bahasa Indonesia</option>
+        <option value="en">🌐 English</option>
+        <option value="es">🌐 Español</option>
+      </select>
+    </div>
+  </header>
 
-      <div class="input-wrapper" id="inputSection">
-        <input type="text" id="tiktokUrl" placeholder="Tempel link TikTok..." oninput="updateActionBtn()">
-        <button type="button" class="btn-action-toggle" id="btnToggle" onclick="handleToggleAction()">
-          <span id="btnIcon">📋</span> <span id="btnText">Tempel</span>
-        </button>
-        <button class="btn-submit" onclick="fetchVideo()">Proses</button>
-      </div>
+  <div class="main-container">
+    <div class="wrapper">
+      <div class="card">
+        <span class="badge" id="txtBadge">⚡ ULTRA FAST & FREE</span>
+        <div class="brand">TikTok Downloader</div>
+        <p class="subtitle" id="txtSubtitle">Unduh Video TikTok HD & Musik MP3 Tanpa Watermark</p>
 
-      <div id="loader" class="dots-loader">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <p id="loadingMsg">Mengambil data, mohon tunggu beberapa detik...</p>
+        <div class="input-wrapper" id="inputSection">
+          <input type="text" id="tiktokUrl" placeholder="Tempel link TikTok..." oninput="updateActionBtn()">
+          <button type="button" class="btn-action-toggle" id="btnToggle" onclick="handleToggleAction()">
+            <span id="btnIcon">📋</span> <span id="btnText">Tempel</span>
+          </button>
+          <button class="btn-submit" id="btnSubmit" onclick="fetchVideo()">Proses</button>
+        </div>
 
-      <div id="resultCard">
-        <div class="result-container">
-          <div class="thumb-wrapper">
-            <img id="videoThumb" src="" alt="Thumbnail Video">
-            <!-- Badge Durasi Selalu Ditampilkan -->
-            <div id="videoDuration" class="duration-badge">
-              ⏱️ <span id="durationText">0:41</span>
+        <div id="loader" class="dots-loader">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <p id="loadingMsg">Mengambil data, mohon tunggu beberapa detik...</p>
+
+        <div id="resultCard">
+          <div class="result-container">
+            <div class="thumb-wrapper">
+              <img id="videoThumb" src="" alt="Thumbnail Video">
+              <div id="videoDuration" class="duration-badge">
+                ⏱️ <span id="durationText">0:41</span>
+              </div>
+            </div>
+            <div class="info-wrapper">
+              <div id="videoTitle" class="video-title">TikTok Video</div>
+              <div class="action-btns">
+                <a id="btnHd" class="btn-dl btn-hd" href="#" target="_blank" download>🚀 Download HD (No WM)</a>
+                <a id="btnSd" class="btn-dl btn-sd" href="#" target="_blank" download>📹 Download SD Video</a>
+                <a id="btnAudio" class="btn-dl btn-audio" href="#" target="_blank" download>🎵 Download Audio (MP3)</a>
+              </div>
             </div>
           </div>
-          <div class="info-wrapper">
-            <div id="videoTitle" class="video-title">TikTok Video</div>
-            <div class="action-btns">
-              <a id="btnHd" class="btn-dl btn-hd" href="#" target="_blank" download>🚀 Download HD (No WM)</a>
-              <a id="btnSd" class="btn-dl btn-sd" href="#" target="_blank" download>📹 Download SD Video</a>
-              <a id="btnAudio" class="btn-dl btn-audio" href="#" target="_blank" download>🎵 Download Audio (MP3)</a>
-            </div>
-          </div>
-        </div>
-        <button class="btn-reset" onclick="resetDownloader()">🔄 Unduh Video Lain</button>
-      </div>
-
-      <div class="features">
-        <div class="feature-box">
-          <div class="feature-icon">⚡</div>
-          <div class="feature-title">Super Cepat</div>
-          <div class="feature-desc">Proses instan 2 detik</div>
-        </div>
-        <div class="feature-box">
-          <div class="feature-icon">💧</div>
-          <div class="feature-title">No Watermark</div>
-          <div class="feature-desc">Hasil bersih & jernih</div>
-        </div>
-        <div class="feature-box">
-          <div class="feature-icon">🔒</div>
-          <div class="feature-title">100% Aman</div>
-          <div class="feature-desc">Tanpa login/daftar</div>
+          <button class="btn-reset" id="btnReset" onclick="resetDownloader()">🔄 Unduh Video Lain</button>
         </div>
       </div>
+    </div>
 
-      <footer>© 2026 TikTok Pro Downloader — All Rights Reserved</footer>
+    <div class="content-section">
+      <h2 class="section-title" id="txtHowToTitle">Cara Download Video TikTok Tanpa Watermark</h2>
+      
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <h3 id="step1Title">Salin Tautan Video</h3>
+          <p id="step1Desc">Buka aplikasi TikTok atau situs web, pilih video yang ingin diunduh, klik "Bagikan" dan pilih "Salin Tautan".</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <h3 id="step2Title">Tempelkan Link</h3>
+          <p id="step2Desc">Kembali ke situs web ini, klik tombol "Tempel" pada kotak pencarian di atas lalu tekan tombol "Proses".</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <h3 id="step3Title">Unduh Video</h3>
+          <p id="step3Desc">Pilih format unduhan (Video HD Tanpa Watermark atau Musik MP3) untuk langsung menyimpannya ke HP/Laptop.</p>
+        </div>
+      </div>
+
+      <div class="faq-container">
+        <h2 class="section-title" id="txtFaqTitle" style="margin-top: 40px;">Pertanyaan Sering Diajukan (FAQ)</h2>
+        
+        <div class="faq-item">
+          <h4 id="faq1Q">Apakah mengunduh video TikTok di sini gratis?</h4>
+          <p id="faq1A">Ya, layanan ini 100% gratis dan bisa digunakan sepuasnya tanpa batas unduhan dan tanpa pendaftaran akun.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4 id="faq2Q">Di mana hasil video TikTok tersimpan?</h4>
+          <p id="faq2A">File video akan otomatis tersimpan di folder "Downloads" atau "Unduhan" bawaan ponsel atau komputer Anda.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4 id="faq3Q">Apakah bisa mengunduh musik/audio MP3 saja?</h4>
+          <p id="faq3A">Bisa! Kami menyediakan opsi tombol khusus untuk mengunduh lagu/audio TikTok dalam format MP3 secara terpisah.</p>
+        </div>
+      </div>
+
+      <footer>© 2026 TikTok Pro Downloader — Free TikTok Watermark Remover</footer>
     </div>
   </div>
 
   <script>
+    // Kamus Bahasa (ID, EN, ES)
+    const translations = {
+      id: {
+        badge: "⚡ ULTRA FAST & FREE",
+        subtitle: "Unduh Video TikTok HD & Musik MP3 Tanpa Watermark",
+        paste: "Tempel",
+        cancel: "Batal",
+        process: "Proses",
+        howToTitle: "Cara Download Video TikTok Tanpa Watermark",
+        step1Title: "Salin Tautan Video",
+        step1Desc: "Buka aplikasi TikTok atau situs web, pilih video yang ingin diunduh, klik 'Bagikan' dan pilih 'Salin Tautan'.",
+        step2Title: "Tempelkan Link",
+        step2Desc: "Kembali ke situs web ini, klik tombol 'Tempel' pada kotak pencarian di atas lalu tekan tombol 'Proses'.",
+        step3Title: "Unduh Video",
+        step3Desc: "Pilih format unduhan (Video HD Tanpa Watermark atau Musik MP3) untuk langsung menyimpannya ke HP/Laptop.",
+        faqTitle: "Pertanyaan Sering Diajukan (FAQ)",
+        faq1Q: "Apakah mengunduh video TikTok di sini gratis?",
+        faq1A: "Ya, layanan ini 100% gratis dan bisa digunakan sepuasnya tanpa batas unduhan dan tanpa pendaftaran akun.",
+        faq2Q: "Di mana hasil video TikTok tersimpan?",
+        faq2A: "File video akan otomatis tersimpan di folder 'Downloads' atau 'Unduhan' bawaan ponsel atau komputer Anda.",
+        faq3Q: "Apakah bisa mengunduh musik/audio MP3 saja?",
+        faq3A: "Bisa! Kami menyediakan opsi tombol khusus untuk mengunduh lagu/audio TikTok dalam format MP3 secara terpisah.",
+        btnReset: "🔄 Unduh Video Lain"
+      },
+      en: {
+        badge: "⚡ ULTRA FAST & FREE",
+        subtitle: "Download TikTok HD Videos & MP3 Music Without Watermark",
+        paste: "Paste",
+        cancel: "Cancel",
+        process: "Process",
+        howToTitle: "How to Download TikTok Videos Without Watermark",
+        step1Title: "Copy Video Link",
+        step1Desc: "Open TikTok app or website, choose the video you want to download, click 'Share' and tap 'Copy Link'.",
+        step2Title: "Paste The Link",
+        step2Desc: "Come back to this website, click 'Paste' inside the box above and hit the 'Process' button.",
+        step3Title: "Download Video",
+        step3Desc: "Choose your download format (HD Video No Watermark or MP3 Audio) to save it directly to your device.",
+        faqTitle: "Frequently Asked Questions (FAQ)",
+        faq1Q: "Is downloading TikTok videos here free?",
+        faq1A: "Yes, this service is 100% free with unlimited downloads and no registration required.",
+        faq2Q: "Where are downloaded TikTok videos saved?",
+        faq2A: "The video files are automatically saved in your device's default 'Downloads' folder.",
+        faq3Q: "Can I download only MP3 audio from TikTok?",
+        faq3A: "Yes! We provide a dedicated button option to download TikTok audio/music separately as MP3.",
+        btnReset: "🔄 Download Another Video"
+      },
+      es: {
+        badge: "⚡ SUPER RÁPIDO Y GRATIS",
+        subtitle: "Descargar Videos TikTok HD y Música MP3 Sin Marca de Agua",
+        paste: "Pegar",
+        cancel: "Cancelar",
+        process: "Procesar",
+        howToTitle: "Cómo descargar videos de TikTok sin marca de agua",
+        step1Title: "Copiar enlace del video",
+        step1Desc: "Abre la app de TikTok, elige el video, haz clic en 'Compartir' y selecciona 'Copiar enlace'.",
+        step2Title: "Pegar el enlace",
+        step2Desc: "Regresa a este sitio web, haz clic en 'Pegar' y presiona el botón 'Procesar'.",
+        step3Title: "Descargar Video",
+        step3Desc: "Elige el formato de descarga (Video HD Sin Marca de Agua o MP3) para guardarlo en tu dispositivo.",
+        faqTitle: "Preguntas Frecuentes (FAQ)",
+        faq1Q: "¿Es gratis descargar videos de TikTok aquí?",
+        faq1A: "Sí, este servicio es 100% gratuito sin límites de descarga y sin necesidad de registrarse.",
+        faq2Q: "¿Dónde se guardan los videos descargados?",
+        faq2A: "Los archivos se guardan automáticamente en la carpeta de 'Descargas' de tu dispositivo.",
+        faq3Q: "¿Puedo descargar solo el audio MP3 de TikTok?",
+        faq3A: "¡Sí! Ofrecemos un botón especial para descargar solo la música/audio de TikTok en formato MP3.",
+        btnReset: "🔄 Descargar otro video"
+      }
+    };
+
+    function changeLanguage() {
+      const lang = document.getElementById('langSelect').value;
+      const t = translations[lang];
+
+      document.getElementById('txtBadge').textContent = t.badge;
+      document.getElementById('txtSubtitle').textContent = t.subtitle;
+      document.getElementById('btnSubmit').textContent = t.process;
+      document.getElementById('txtHowToTitle').textContent = t.howToTitle;
+      document.getElementById('step1Title').textContent = t.step1Title;
+      document.getElementById('step1Desc').textContent = t.step1Desc;
+      document.getElementById('step2Title').textContent = t.step2Title;
+      document.getElementById('step2Desc').textContent = t.step2Desc;
+      document.getElementById('step3Title').textContent = t.step3Title;
+      document.getElementById('step3Desc').textContent = t.step3Desc;
+      document.getElementById('txtFaqTitle').textContent = t.faqTitle;
+      document.getElementById('faq1Q').textContent = t.faq1Q;
+      document.getElementById('faq1A').textContent = t.faq1A;
+      document.getElementById('faq2Q').textContent = t.faq2Q;
+      document.getElementById('faq2A').textContent = t.faq2A;
+      document.getElementById('faq3Q').textContent = t.faq3Q;
+      document.getElementById('faq3A').textContent = t.faq3A;
+      document.getElementById('btnReset').textContent = t.btnReset;
+
+      updateActionBtn();
+    }
+
     async function handleToggleAction() {
       const input = document.getElementById('tiktokUrl');
       if (input.value.length > 0) {
@@ -389,17 +568,20 @@
     function updateActionBtn() {
       const input = document.getElementById('tiktokUrl');
       const btn = document.getElementById('btnToggle');
+      const lang = document.getElementById('langSelect').value;
+      const t = translations[lang];
+
       if (input.value.length > 0) {
         btn.classList.add('is-cancel');
-        btn.innerHTML = '✖ Batal';
+        btn.innerHTML = `✖ ${t.cancel}`;
       } else {
         btn.classList.remove('is-cancel');
-        btn.innerHTML = '📋 Tempel';
+        btn.innerHTML = `📋 ${t.paste}`;
       }
     }
 
     function formatDuration(seconds) {
-      if (!seconds || isNaN(seconds) || seconds <= 0) return '0:41'; // Fallback durasi default
+      if (!seconds || isNaN(seconds) || seconds <= 0) return '0:41';
       const mins = Math.floor(seconds / 60);
       const secs = Math.floor(seconds % 60);
       return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
