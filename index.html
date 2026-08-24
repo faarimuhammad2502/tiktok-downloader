@@ -525,13 +525,15 @@
       setInterval(incrementCounter, 4000); // Live Stat Counter
     });
 
-   // HAPUS KODE LAMA INI:
-function incrementCounter() {
-  const numElem = document.getElementById('counterNum');
-  let val = parseInt(numElem.textContent.replace(/,/g, ''));
-  val += Math.floor(Math.random() * 3) + 1;
-  numElem.textContent = val.toLocaleString();
+  // GANTI DENGAN KODE BARU INI:
+function updateRealCounter() {
+  // Mengambil angka hitungan asli dari penyimpanan browser (default mulai dari 1)
+  let count = parseInt(localStorage.getItem('real_download_count') || '1');
+  document.getElementById('counterNum').textContent = count.toLocaleString();
 }
+
+// Panggil fungsi ini tepat di dalam fungsi fetchVideo() saat download BERHASIL:
+// localStorage.setItem('real_download_count', count + 1);
 
     function changeLanguage() {
       const lang = document.getElementById('langSelect').value;
