@@ -3,7 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Download Video & Slide TikTok Tanpa Watermark Pro</title>
+  <title>TikTok Pro Downloader - Download Video & Slide Tanpa Watermark</title>
+
+  <!-- Open Graph Meta Tags untuk Preview WhatsApp / Social Media -->
+  <meta property="هtitle" content="TikTok Pro Downloader - No Watermark">
+  <meta property="og:description" content="Download Video HD, Slide Foto, dan Audio MP3 dari TikTok dengan cepat, gratis, dan tanpa watermark!">
+  <meta property="og:type" content="website">
 
   <link rel="manifest" href="data:application/json,{%22name%22:%22TikTok%20Pro%20Downloader%22,%22short_name%22:%22TikTokPro%22,%22start_url%22:%22/%22,%22display%22:%22standalone%22}">
   <meta name="theme-color" content="#080811">
@@ -169,7 +174,9 @@
       box-shadow: 0 4px 15px rgba(255, 0, 80, 0.4);
       font-size: 13px;
       white-space: nowrap;
+      transition: opacity 0.3s;
     }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
 
     @media (max-width: 480px) { .btn-submit { width: 100%; } }
 
@@ -262,7 +269,6 @@
     .btn-sd { background: linear-gradient(135deg, #3B82F6, #1D4ED8); }
     .btn-audio { background: linear-gradient(135deg, #8B5CF6, #6D28D9); }
 
-    /* Tombol Tambahan: Copy Link & WhatsApp Share */
     .extra-tools {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -283,7 +289,6 @@
       align-items: center;
       justify-content: center;
       gap: 5px;
-      transition: all 0.2s;
     }
     .btn-extra:hover { background: rgba(255, 255, 255, 0.12); }
 
@@ -297,8 +302,21 @@
 
     audio { width: 100%; height: 32px; outline: none; }
 
+    /* Slide Photos Grid & Tombol Unduh Semua */
     #photoGallerySection { display: none; margin-top: 15px; }
-    .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; margin-top: 10px; }
+    .btn-download-all {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      background: linear-gradient(135deg, #00F2FE, #4FACFE);
+      color: #000;
+      font-weight: 800;
+      font-size: 12px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; }
     .photo-item { position: relative; border-radius: 10px; overflow: hidden; height: 140px; border: 1px solid rgba(255,255,255,0.15); }
     .photo-item img { width: 100%; height: 100%; object-fit: cover; }
     .photo-item a { position: absolute; bottom: 4px; left: 4px; right: 4px; background: rgba(0, 242, 254, 0.9); color: #000; text-align: center; font-size: 10px; font-weight: 800; padding: 4px; border-radius: 6px; text-decoration: none; }
@@ -322,6 +340,29 @@
       cursor: pointer;
     }
 
+    /* Custom Toast Notification Modern */
+    #toastMessage {
+      visibility: hidden;
+      min-width: 240px;
+      background-color: rgba(18, 20, 29, 0.95);
+      color: #00F2FE;
+      text-align: center;
+      border-radius: 12px;
+      padding: 12px 18px;
+      position: fixed;
+      z-index: 1000;
+      left: 50%;
+      bottom: 30px;
+      transform: translateX(-50%);
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid rgba(0, 242, 254, 0.4);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      backdrop-filter: blur(10px);
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+    #toastMessage.show { visibility: visible; opacity: 1; }
+
     @media (max-width: 500px) {
       .result-container { flex-direction: column; }
       .thumb-wrapper { width: 100%; height: 220px; }
@@ -344,6 +385,9 @@
   </style>
 </head>
 <body>
+
+  <!-- Custom Toast Notification -->
+  <div id="toastMessage">Notifikasi sistem</div>
 
   <header>
     <div class="logo-area">TikTok Pro</div>
@@ -394,7 +438,6 @@
                 <a id="btnSd" class="btn-dl btn-sd" href="#" target="_blank" download>📹 Download SD (Hemat Kuota)</a>
                 <a id="btnAudio" class="btn-dl btn-audio" href="#" target="_blank" download>🎵 Download Audio (MP3)</a>
                 
-                <!-- Fitur Tambahan: Salin Link & Share WhatsApp -->
                 <div class="extra-tools">
                   <button class="btn-extra" onclick="copyDirectLink()">📋 Salin Link</button>
                   <button class="btn-extra" style="color: #25D366;" onclick="shareToWhatsApp()">💬 Share WA</button>
@@ -408,8 +451,10 @@
             <audio id="audioPreview" controls></audio>
           </div>
 
+          <!-- Section Slide Foto TikTok dengan Tombol Unduh Semua & Satuan -->
           <div id="photoGallerySection">
-            <p style="font-size: 12px; color: #00F2FE; font-weight: 700; margin-top: 10px;">📸 Postingan Slide Foto Detected:</p>
+            <button class="btn-download-all" onclick="downloadAllPhotos()">🌟 Unduh Semua Foto Sekaligus</button>
+            <p style="font-size: 12px; color: #00F2FE; font-weight: 700; margin-top: 6px; margin-bottom: 6px;">📸 Atau Pilih Foto Satu Persatu:</p>
             <div class="photo-grid" id="photoGrid"></div>
           </div>
 
@@ -465,7 +510,7 @@
 
         <div class="faq-item">
           <h4 id="faq3Q">Apakah bisa mengunduh postingan slide foto TikTok?</h4>
-          <p id="faq3A">Bisa! Website kami otomatis mendeteksi slide foto TikTok dan menyediakan tombol unduh per gambarnya.</p>
+          <p id="faq3A">Bisa! Website kami otomatis mendeteksi slide foto TikTok dan menyediakan opsi unduh semua atau per lembar foto.</p>
         </div>
       </div>
 
@@ -475,6 +520,7 @@
 
   <script>
     let currentActiveDownloadUrl = '';
+    let globalPhotoList = [];
 
     const translations = {
       id: {
@@ -497,7 +543,7 @@
         faq2Q: "Apakah opsi kualitas Full HD benar-benar asli?",
         faq2A: "Ya! Sistem akan mengunduh file dengan bit rate dan resolusi tertinggi yang disediakan langsung dari server TikTok.",
         faq3Q: "Apakah bisa mengunduh postingan slide foto TikTok?",
-        faq3A: "Bisa! Website kami otomatis mendeteksi slide foto TikTok dan menyediakan tombol unduh per gambarnya.",
+        faq3A: "Bisa! Website kami otomatis mendeteksi slide foto TikTok dan menyediakan opsi unduh semua atau per lembar foto.",
         btnReset: "🔄 Unduh Video Lain"
       },
       en: {
@@ -520,7 +566,7 @@
         faq2Q: "Is the Full HD quality option real?",
         faq2A: "Yes! The system fetches the highest bit-rate and resolution file available from TikTok servers.",
         faq3Q: "Can I download TikTok Photo Slides?",
-        faq3A: "Yes! Our website automatically detects TikTok photo slides and lets you download individual photos.",
+        faq3A: "Yes! Our website automatically detects TikTok photo slides and lets you download all or individual photos.",
         btnReset: "🔄 Download Another Video"
       },
       es: {
@@ -543,7 +589,7 @@
         faq2Q: "¿Es real la opción de calidad Full HD?",
         faq2A: "¡Sí! El sistema descarga el archivo con la mayor resolución disponible en los servidores de TikTok.",
         faq3Q: "¿Puedo descargar fotos de diapositivas de TikTok?",
-        faq3A: "¡Sí! Nuestro sitio web detecta automáticamente diapositivas de fotos y te permite descargarlas.",
+        faq3A: "¡Sí! Nuestro sitio web detecta automáticamente diapositivas y te permite descargarlas todas o individualmente.",
         btnReset: "🔄 Descargar otro video"
       }
     };
@@ -552,6 +598,13 @@
       renderHistory();
       renderRealCounter();
     });
+
+    function showToast(text) {
+      const toast = document.getElementById("toastMessage");
+      toast.textContent = text;
+      toast.className = "show";
+      setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
+    }
 
     function renderRealCounter() {
       let count = parseInt(localStorage.getItem('real_download_count') || '0');
@@ -601,7 +654,7 @@
         try {
           const text = await navigator.clipboard.readText();
           if (text) { input.value = text; updateActionBtn(); }
-        } catch (err) { alert('Gunakan tempel manual pada perangkatmu.'); }
+        } catch (err) { showToast('⚠️ Gunakan tempel manual pada perangkatmu.'); }
       }
     }
 
@@ -630,13 +683,16 @@
     async function fetchVideo() {
       const videoUrl = document.getElementById('tiktokUrl').value.trim();
       const inputSection = document.getElementById('inputSection');
+      const btnSubmit = document.getElementById('btnSubmit');
       const loader = document.getElementById('loader');
       const msg = document.getElementById('loadingMsg');
       const resultCard = document.getElementById('resultCard');
 
-      if (!videoUrl) return alert('Silakan tempelkan link video TikTok terlebih dahulu!');
-      if (!videoUrl.includes('tiktok.com')) return alert('URL tidak valid! Pastikan link yang ditempel berasal dari TikTok (tiktok.com).');
+      if (!videoUrl) { showToast('⚠️ Silakan tempelkan link video TikTok!'); return; }
+      if (!videoUrl.includes('tiktok.com')) { showToast('❌ Link tidak valid! Pastikan link dari TikTok.'); return; }
 
+      // Anti-Spam Button Protection (Disabled saat diproses)
+      btnSubmit.disabled = true;
       loader.style.display = 'flex';
       msg.style.display = 'block';
       msg.textContent = 'Mengambil data, mohon tunggu beberapa detik...';
@@ -660,6 +716,7 @@
         
         loader.style.display = 'none'; 
         msg.style.display = 'none';
+        btnSubmit.disabled = false;
 
         if (data && ((data.video && data.video.length > 0) || (data.images && data.images.length > 0))) {
           inputSection.style.display = 'none';
@@ -697,13 +754,15 @@
             audioPlayerBox.style.display = 'none';
           }
 
+          // Handle Slide Photo Posts & Batch Download
           const photoGallerySection = document.getElementById('photoGallerySection');
           const photoGrid = document.getElementById('photoGrid');
           photoGrid.innerHTML = '';
+          globalPhotoList = data.images || [];
 
-          if (data.images && data.images.length > 0) {
+          if (globalPhotoList.length > 0) {
             photoGallerySection.style.display = 'block';
-            data.images.forEach((imgUrl, idx) => {
+            globalPhotoList.forEach((imgUrl, idx) => {
               const div = document.createElement('div');
               div.className = 'photo-item';
               div.innerHTML = `<img src="${imgUrl}" alt="Photo ${idx+1}"><a href="${imgUrl}" target="_blank" download>Unduh #${idx+1}</a>`;
@@ -717,28 +776,45 @@
 
           incrementRealCounter();
           saveToHistory(title, coverUrl);
+          showToast('✨ Berhasil memproses video!');
         } else { 
-          alert('Gagal mengambil data video. Kemungkinan video bersifat privat atau sudah dihapus.'); 
+          showToast('❌ Gagal mengambil data. Video privat atau dihapus.'); 
         }
       } catch (err) { 
         loader.style.display = 'none'; 
         msg.style.display = 'none'; 
-        alert('Terjadi kesalahan saat menghubungi server.'); 
+        btnSubmit.disabled = false;
+        showToast('⚠️ Terjadi kesalahan saat menghubungi server.'); 
       }
     }
 
-    // Fungsi Tombol Salin Link Direct
+    // Fungsi Unduh Semua Foto Sekaligus
+    function downloadAllPhotos() {
+      if (globalPhotoList.length === 0) return;
+      globalPhotoList.forEach((url, idx) => {
+        setTimeout(() => {
+          const a = document.createElement('a');
+          a.href = url;
+          a.target = '_blank';
+          a.download = `tiktok_photo_${idx + 1}.jpg`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        }, idx * 400); // Jeda jeda tipis antar unduhan agar tidak diblokir browser
+      });
+      showToast('📥 Mengunduh semua foto secara otomatis...');
+    }
+
     async function copyDirectLink() {
-      if (!currentActiveDownloadUrl) return alert('Tidak ada link aktif.');
+      if (!currentActiveDownloadUrl) { showToast('⚠️ Tidak ada link aktif.'); return; }
       try {
         await navigator.clipboard.writeText(currentActiveDownloadUrl);
-        alert('✅ Link direct video berhasil disalin ke clipboard!');
+        showToast('✅ Link direct berhasil disalin!');
       } catch (err) {
-        alert('Gagal menyalin link.');
+        showToast('❌ Gagal menyalin link.');
       }
     }
 
-    // Fungsi Share ke WhatsApp
     function shareToWhatsApp() {
       const text = `Nih download video TikTok tanpa watermark gampang banget lewat web ini: ${window.location.href}`;
       window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
@@ -776,6 +852,7 @@
     function clearHistory() {
       localStorage.removeItem('tiktok_history');
       renderHistory();
+      showToast('🧹 Riwayat berhasil dihapus.');
     }
 
     function resetDownloader() {
