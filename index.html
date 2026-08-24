@@ -525,12 +525,13 @@
       setInterval(incrementCounter, 4000); // Live Stat Counter
     });
 
-    function incrementCounter() {
-      const numElem = document.getElementById('counterNum');
-      let val = parseInt(numElem.textContent.replace(/,/g, ''));
-      val += Math.floor(Math.random() * 3) + 1;
-      numElem.textContent = val.toLocaleString();
-    }
+   // HAPUS KODE LAMA INI:
+function incrementCounter() {
+  const numElem = document.getElementById('counterNum');
+  let val = parseInt(numElem.textContent.replace(/,/g, ''));
+  val += Math.floor(Math.random() * 3) + 1;
+  numElem.textContent = val.toLocaleString();
+}
 
     function changeLanguage() {
       const lang = document.getElementById('langSelect').value;
