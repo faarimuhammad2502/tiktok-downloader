@@ -19,7 +19,6 @@
       overflow-x: hidden;
     }
 
-    /* Header Navigasi & Pengaturan Bahasa */
     header {
       width: 100%;
       max-width: 1000px;
@@ -40,10 +39,6 @@
       -webkit-text-fill-color: transparent;
     }
 
-    .lang-select-wrapper {
-      position: relative;
-    }
-
     .lang-select {
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.2);
@@ -56,12 +51,8 @@
       cursor: pointer;
     }
 
-    .lang-select option {
-      background: #080811;
-      color: #fff;
-    }
+    .lang-select option { background: #080811; color: #fff; }
 
-    /* Container Utama Downloader */
     .main-container {
       display: flex;
       flex-direction: column;
@@ -168,7 +159,6 @@
 
     @media (max-width: 480px) { .btn-submit { width: 100%; } }
 
-    /* Loading Animation Dots */
     .dots-loader {
       display: none;
       justify-content: center;
@@ -196,7 +186,6 @@
 
     #loadingMsg { display: none; font-size: 13px; color: #00F2FE; margin-top: 8px; font-weight: 600; }
 
-    /* Result Card Layout */
     #resultCard { display: none; margin-top: 10px; animation: fadeIn 0.4s ease; text-align: left; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -212,7 +201,7 @@
     .thumb-wrapper {
       position: relative;
       width: 140px;
-      height: 180px;
+      height: 200px;
       flex-shrink: 0;
       border-radius: 12px;
       overflow: hidden;
@@ -238,22 +227,23 @@
     }
 
     .info-wrapper { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
-    .video-title { font-size: 13px; color: #e2e8f0; line-height: 1.4; font-weight: 600; margin-bottom: 12px; }
-    .action-btns { display: flex; flex-direction: column; gap: 8px; }
+    .video-title { font-size: 13px; color: #e2e8f0; line-height: 1.4; font-weight: 600; margin-bottom: 10px; }
+    .action-btns { display: flex; flex-direction: column; gap: 6px; }
 
     .btn-dl { 
-      padding: 10px 14px; 
-      border-radius: 10px; 
+      padding: 9px 12px; 
+      border-radius: 9px; 
       text-decoration: none; 
       color: white; 
       font-weight: 700; 
-      font-size: 12px; 
+      font-size: 11px; 
       display: flex; 
       align-items: center; 
       justify-content: center; 
       gap: 6px;
     }
 
+    .btn-fullhd { background: linear-gradient(135deg, #FF0050, #7F00FF); }
     .btn-hd { background: linear-gradient(135deg, #10B981, #059669); }
     .btn-sd { background: linear-gradient(135deg, #3B82F6, #1D4ED8); }
     .btn-audio { background: linear-gradient(135deg, #8B5CF6, #6D28D9); }
@@ -276,7 +266,6 @@
       .thumb-wrapper { width: 100%; height: 220px; }
     }
 
-    /* SECTION KHAS SSSTIK: LANGKAH-LANGKAH & INFORMASI */
     .content-section {
       width: 100%;
       max-width: 850px;
@@ -303,34 +292,13 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 20px;
       padding: 24px;
-      position: relative;
     }
 
-    .step-num {
-      font-size: 36px;
-      font-weight: 900;
-      color: #00F2FE;
-      margin-bottom: 10px;
-      line-height: 1;
-    }
+    .step-num { font-size: 36px; font-weight: 900; color: #00F2FE; margin-bottom: 10px; }
+    .step-card h3 { font-size: 16px; color: #fff; margin-bottom: 8px; }
+    .step-card p { font-size: 13px; color: #94a3b8; line-height: 1.6; }
 
-    .step-card h3 {
-      font-size: 16px;
-      color: #fff;
-      margin-bottom: 8px;
-    }
-
-    .step-card p {
-      font-size: 13px;
-      color: #94a3b8;
-      line-height: 1.6;
-    }
-
-    /* FAQ Section */
-    .faq-container {
-      margin-top: 50px;
-    }
-
+    .faq-container { margin-top: 50px; }
     .faq-item {
       background: rgba(18, 20, 29, 0.5);
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -338,18 +306,8 @@
       padding: 18px 20px;
       margin-bottom: 12px;
     }
-
-    .faq-item h4 {
-      font-size: 15px;
-      color: #00F2FE;
-      margin-bottom: 6px;
-    }
-
-    .faq-item p {
-      font-size: 13px;
-      color: #a0a5ba;
-      line-height: 1.5;
-    }
+    .faq-item h4 { font-size: 15px; color: #00F2FE; margin-bottom: 6px; }
+    .faq-item p { font-size: 13px; color: #a0a5ba; line-height: 1.5; }
 
     footer { margin-top: 50px; font-size: 12px; color: #525866; text-align: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; }
   </style>
@@ -398,8 +356,9 @@
             <div class="info-wrapper">
               <div id="videoTitle" class="video-title">TikTok Video</div>
               <div class="action-btns">
-                <a id="btnHd" class="btn-dl btn-hd" href="#" target="_blank" download>🚀 Download HD (No WM)</a>
-                <a id="btnSd" class="btn-dl btn-sd" href="#" target="_blank" download>📹 Download SD Video</a>
+                <a id="btnFullHd" class="btn-dl btn-fullhd" href="#" target="_blank" download>🌟 Download Full HD (1080p)</a>
+                <a id="btnHd" class="btn-dl btn-hd" href="#" target="_blank" download>🚀 Download HD (720p)</a>
+                <a id="btnSd" class="btn-dl btn-sd" href="#" target="_blank" download>📹 Download SD (Hemat Kuota)</a>
                 <a id="btnAudio" class="btn-dl btn-audio" href="#" target="_blank" download>🎵 Download Audio (MP3)</a>
               </div>
             </div>
@@ -427,8 +386,8 @@
 
         <div class="step-card">
           <div class="step-num">03</div>
-          <h3 id="step3Title">Unduh Video</h3>
-          <p id="step3Desc">Pilih format unduhan (Video HD Tanpa Watermark atau Musik MP3) untuk langsung menyimpannya ke HP/Laptop.</p>
+          <h3 id="step3Title">Pilih Kualitas & Unduh</h3>
+          <p id="step3Desc">Pilih opsi kualitas (Full HD 1080p, HD 720p, SD, atau Musik MP3) untuk langsung menyimpannya ke HP/Laptop.</p>
         </div>
       </div>
 
@@ -441,8 +400,8 @@
         </div>
 
         <div class="faq-item">
-          <h4 id="faq2Q">Di mana hasil video TikTok tersimpan?</h4>
-          <p id="faq2A">File video akan otomatis tersimpan di folder "Downloads" atau "Unduhan" bawaan ponsel atau komputer Anda.</p>
+          <h4 id="faq2Q">Apakah opsi kualitas Full HD benar-benar asli?</h4>
+          <p id="faq2A">Ya! Sistem akan mengunduh file dengan bit rate dan resolusi tertinggi yang disediakan langsung dari server TikTok.</p>
         </div>
 
         <div class="faq-item">
@@ -456,7 +415,6 @@
   </div>
 
   <script>
-    // Kamus Bahasa (ID, EN, ES)
     const translations = {
       id: {
         badge: "⚡ ULTRA FAST & FREE",
@@ -469,13 +427,13 @@
         step1Desc: "Buka aplikasi TikTok atau situs web, pilih video yang ingin diunduh, klik 'Bagikan' dan pilih 'Salin Tautan'.",
         step2Title: "Tempelkan Link",
         step2Desc: "Kembali ke situs web ini, klik tombol 'Tempel' pada kotak pencarian di atas lalu tekan tombol 'Proses'.",
-        step3Title: "Unduh Video",
-        step3Desc: "Pilih format unduhan (Video HD Tanpa Watermark atau Musik MP3) untuk langsung menyimpannya ke HP/Laptop.",
+        step3Title: "Pilih Kualitas & Unduh",
+        step3Desc: "Pilih opsi kualitas (Full HD 1080p, HD 720p, SD, atau Musik MP3) untuk langsung menyimpannya ke HP/Laptop.",
         faqTitle: "Pertanyaan Sering Diajukan (FAQ)",
         faq1Q: "Apakah mengunduh video TikTok di sini gratis?",
         faq1A: "Ya, layanan ini 100% gratis dan bisa digunakan sepuasnya tanpa batas unduhan dan tanpa pendaftaran akun.",
-        faq2Q: "Di mana hasil video TikTok tersimpan?",
-        faq2A: "File video akan otomatis tersimpan di folder 'Downloads' atau 'Unduhan' bawaan ponsel atau komputer Anda.",
+        faq2Q: "Apakah opsi kualitas Full HD benar-benar asli?",
+        faq2A: "Ya! Sistem akan mengunduh file dengan bit rate dan resolusi tertinggi yang disediakan langsung dari server TikTok.",
         faq3Q: "Apakah bisa mengunduh musik/audio MP3 saja?",
         faq3A: "Bisa! Kami menyediakan opsi tombol khusus untuk mengunduh lagu/audio TikTok dalam format MP3 secara terpisah.",
         btnReset: "🔄 Unduh Video Lain"
@@ -491,13 +449,13 @@
         step1Desc: "Open TikTok app or website, choose the video you want to download, click 'Share' and tap 'Copy Link'.",
         step2Title: "Paste The Link",
         step2Desc: "Come back to this website, click 'Paste' inside the box above and hit the 'Process' button.",
-        step3Title: "Download Video",
-        step3Desc: "Choose your download format (HD Video No Watermark or MP3 Audio) to save it directly to your device.",
+        step3Title: "Choose Quality & Download",
+        step3Desc: "Select your quality option (Full HD 1080p, HD 720p, SD, or MP3 Audio) to save it directly to your device.",
         faqTitle: "Frequently Asked Questions (FAQ)",
         faq1Q: "Is downloading TikTok videos here free?",
         faq1A: "Yes, this service is 100% free with unlimited downloads and no registration required.",
-        faq2Q: "Where are downloaded TikTok videos saved?",
-        faq2A: "The video files are automatically saved in your device's default 'Downloads' folder.",
+        faq2Q: "Is the Full HD quality option real?",
+        faq2A: "Yes! The system fetches the highest bit-rate and resolution file available from TikTok servers.",
         faq3Q: "Can I download only MP3 audio from TikTok?",
         faq3A: "Yes! We provide a dedicated button option to download TikTok audio/music separately as MP3.",
         btnReset: "🔄 Download Another Video"
@@ -513,13 +471,13 @@
         step1Desc: "Abre la app de TikTok, elige el video, haz clic en 'Compartir' y selecciona 'Copiar enlace'.",
         step2Title: "Pegar el enlace",
         step2Desc: "Regresa a este sitio web, haz clic en 'Pegar' y presiona el botón 'Procesar'.",
-        step3Title: "Descargar Video",
-        step3Desc: "Elige el formato de descarga (Video HD Sin Marca de Agua o MP3) para guardarlo en tu dispositivo.",
+        step3Title: "Elegir Calidad y Descargar",
+        step3Desc: "Selecciona el formato (Full HD 1080p, HD 720p, SD o MP3) para guardarlo en tu dispositivo.",
         faqTitle: "Preguntas Frecuentes (FAQ)",
         faq1Q: "¿Es gratis descargar videos de TikTok aquí?",
         faq1A: "Sí, este servicio es 100% gratuito sin límites de descarga y sin necesidad de registrarse.",
-        faq2Q: "¿Dónde se guardan los videos descargados?",
-        faq2A: "Los archivos se guardan automáticamente en la carpeta de 'Descargas' de tu dispositivo.",
+        faq2Q: "¿Es real la opción de calidad Full HD?",
+        faq2A: "¡Sí! El sistema descarga el archivo con la mayor resolución disponible en los servidores de TikTok.",
         faq3Q: "¿Puedo descargar solo el audio MP3 de TikTok?",
         faq3A: "¡Sí! Ofrecemos un botón especial para descargar solo la música/audio de TikTok en formato MP3.",
         btnReset: "🔄 Descargar otro video"
@@ -603,7 +561,7 @@
 
       setTimeout(() => {
         if (loader.style.display === 'flex') {
-          msg.textContent = 'Memproses video tanpa watermark...';
+          msg.textContent = 'Memproses opsi kualitas video tanpa watermark...';
         }
       }, 1500);
 
@@ -623,8 +581,10 @@
         if (data && data.video && data.video.length > 0) {
           inputSection.style.display = 'none';
 
-          const downloadUrl = data.video[0];
-          const downloadUrlHd = data.video[1] || downloadUrl;
+          const sdUrl = data.video[0];
+          const hdUrl = data.video[1] || sdUrl;
+          const fullHdUrl = data.video[2] || hdUrl; // Mengambil stream bitrate tertinggi jika tersedia
+          
           const audioUrl = data.music ? data.music[0] : null;
           const coverUrl = data.cover || (data.images ? data.images[0] : 'https://via.placeholder.com/150');
           const title = data.description || 'Video TikTok';
@@ -634,8 +594,10 @@
           document.getElementById('videoThumb').src = coverUrl;
           document.getElementById('videoTitle').textContent = title;
           document.getElementById('durationText').textContent = formattedDuration;
-          document.getElementById('btnHd').href = downloadUrlHd;
-          document.getElementById('btnSd').href = downloadUrl;
+          
+          document.getElementById('btnFullHd').href = fullHdUrl;
+          document.getElementById('btnHd').href = hdUrl;
+          document.getElementById('btnSd').href = sdUrl;
 
           if (audioUrl) {
             document.getElementById('btnAudio').href = audioUrl;
