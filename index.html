@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Download Video & Slide TikTok Tanpa Watermark Pro</title>
 
+  <!-- PWA & Favicon Support -->
   <link rel="manifest" href="data:application/json,{%22name%22:%22TikTok%20Pro%20Downloader%22,%22short_name%22:%22TikTokPro%22,%22start_url%22:%22/%22,%22display%22:%22standalone%22}">
   <meta name="theme-color" content="#080811">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='28' fill='%23121212'/><text x='50%' y='68%' font-size='52' font-weight='900' font-family='Arial, sans-serif' text-anchor='middle' fill='%23FF0050'>D<tspan fill='%2300F2FE'>T</tspan></text></svg>">
@@ -99,7 +100,7 @@
 
     .subtitle { color: #a0a5ba; font-size: 13px; margin-bottom: 18px; line-height: 1.5; }
 
-    /* Counter Indicator Stat */
+    /* Counter Indicator Stat Asli */
     .stat-counter {
       font-size: 12px;
       color: #00F2FE;
@@ -174,7 +175,6 @@
 
     @media (max-width: 480px) { .btn-submit { width: 100%; } }
 
-    /* Loading Dots Animation */
     .dots-loader {
       display: none;
       justify-content: center;
@@ -202,7 +202,6 @@
 
     #loadingMsg { display: none; font-size: 13px; color: #00F2FE; margin-top: 8px; font-weight: 600; }
 
-    /* Result Box Layout */
     #resultCard { display: none; margin-top: 10px; animation: fadeIn 0.4s ease; text-align: left; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -265,7 +264,6 @@
     .btn-sd { background: linear-gradient(135deg, #3B82F6, #1D4ED8); }
     .btn-audio { background: linear-gradient(135deg, #8B5CF6, #6D28D9); }
 
-    /* Audio Player Preview */
     .audio-player-box {
       margin-top: 10px;
       background: rgba(255, 255, 255, 0.05);
@@ -276,14 +274,12 @@
 
     audio { width: 100%; height: 32px; outline: none; }
 
-    /* Slide Photos Grid */
     #photoGallerySection { display: none; margin-top: 15px; }
     .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; margin-top: 10px; }
     .photo-item { position: relative; border-radius: 10px; overflow: hidden; height: 140px; border: 1px solid rgba(255,255,255,0.15); }
     .photo-item img { width: 100%; height: 100%; object-fit: cover; }
     .photo-item a { position: absolute; bottom: 4px; left: 4px; right: 4px; background: rgba(0, 242, 254, 0.9); color: #000; text-align: center; font-size: 10px; font-weight: 800; padding: 4px; border-radius: 6px; text-decoration: none; }
 
-    /* Riwayat / History Box */
     .history-section { display: none; margin-top: 20px; text-align: left; border-top: 1px dashed rgba(255,255,255,0.15); padding-top: 15px; }
     .history-title { font-size: 12px; color: #a0a5ba; font-weight: 700; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
     .history-list { display: flex; flex-direction: column; gap: 6px; }
@@ -308,7 +304,6 @@
       .thumb-wrapper { width: 100%; height: 220px; }
     }
 
-    /* Content & Steps */
     .content-section { width: 100%; max-width: 850px; margin: 50px auto 0; padding: 0 20px; }
     .section-title { font-size: 24px; font-weight: 800; text-align: center; margin-bottom: 30px; color: #ffffff; }
     .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
@@ -345,7 +340,8 @@
         <div class="brand">TikTok Downloader</div>
         <p class="subtitle" id="txtSubtitle">Unduh Video TikTok HD & Musik MP3 Tanpa Watermark</p>
 
-        <div class="stat-counter">🚀 <span id="counterNum">1,482,910</span> Video Berhasil Diunduh Hari Ini</div>
+        <!-- Stat Counter Hitungan Asli Real-time -->
+        <div class="stat-counter">🚀 <span id="counterNum">0</span> <span id="txtStatLabel">Video Berhasil Diunduh Di Perangkat Ini</span></div>
 
         <div class="input-wrapper" id="inputSection">
           <input type="text" id="tiktokUrl" placeholder="Tempel link TikTok..." oninput="updateActionBtn()">
@@ -454,6 +450,7 @@
       id: {
         badge: "⚡ ULTRA FAST & FREE",
         subtitle: "Unduh Video TikTok HD & Musik MP3 Tanpa Watermark",
+        statLabel: "Video Berhasil Diunduh Di Perangkat Ini",
         paste: "Tempel",
         cancel: "Batal",
         process: "Proses",
@@ -476,6 +473,7 @@
       en: {
         badge: "⚡ ULTRA FAST & FREE",
         subtitle: "Download TikTok HD Videos & MP3 Music Without Watermark",
+        statLabel: "Videos Successfully Processed On This Device",
         paste: "Paste",
         cancel: "Cancel",
         process: "Process",
@@ -498,6 +496,7 @@
       es: {
         badge: "⚡ SUPER RÁPIDO Y GRATIS",
         subtitle: "Descargar Videos TikTok HD y Música MP3 Sin Marca de Agua",
+        statLabel: "Videos Procesados Con Éxito En Este Dispositivo",
         paste: "Pegar",
         cancel: "Cancelar",
         process: "Procesar",
@@ -519,21 +518,24 @@
       }
     };
 
-    // Load History saat aplikasi dibuka
     document.addEventListener("DOMContentLoaded", () => {
       renderHistory();
-      setInterval(incrementCounter, 4000); // Live Stat Counter
+      renderRealCounter();
     });
 
-  // GANTI DENGAN KODE BARU INI:
-function updateRealCounter() {
-  // Mengambil angka hitungan asli dari penyimpanan browser (default mulai dari 1)
-  let count = parseInt(localStorage.getItem('real_download_count') || '1');
-  document.getElementById('counterNum').textContent = count.toLocaleString();
-}
+    // Menampilkan Hitungan Asli dari LocalStorage
+    function renderRealCounter() {
+      let count = parseInt(localStorage.getItem('real_download_count') || '0');
+      document.getElementById('counterNum').textContent = count.toLocaleString();
+    }
 
-// Panggil fungsi ini tepat di dalam fungsi fetchVideo() saat download BERHASIL:
-// localStorage.setItem('real_download_count', count + 1);
+    // Menambah Angka Hitungan +1 Setiap Download Berhasil
+    function incrementRealCounter() {
+      let count = parseInt(localStorage.getItem('real_download_count') || '0');
+      count += 1;
+      localStorage.setItem('real_download_count', count.toString());
+      renderRealCounter();
+    }
 
     function changeLanguage() {
       const lang = document.getElementById('langSelect').value;
@@ -541,6 +543,7 @@ function updateRealCounter() {
 
       document.getElementById('txtBadge').textContent = t.badge;
       document.getElementById('txtSubtitle').textContent = t.subtitle;
+      document.getElementById('txtStatLabel').textContent = t.statLabel;
       document.getElementById('btnSubmit').textContent = t.process;
       document.getElementById('txtHowToTitle').textContent = t.howToTitle;
       document.getElementById('step1Title').textContent = t.step1Title;
@@ -603,7 +606,6 @@ function updateRealCounter() {
       const msg = document.getElementById('loadingMsg');
       const resultCard = document.getElementById('resultCard');
 
-      // Smart URL Validation (Penanganan Error Khusus)
       if (!videoUrl) return alert('Silakan tempelkan link video TikTok terlebih dahulu!');
       if (!videoUrl.includes('tiktok.com')) return alert('URL tidak valid! Pastikan link yang ditempel berasal dari TikTok (tiktok.com).');
 
@@ -652,7 +654,6 @@ function updateRealCounter() {
           document.getElementById('btnHd').href = hdUrl;
           document.getElementById('btnSd').href = sdUrl;
 
-          // Audio Preview Player
           const audioPlayerBox = document.getElementById('audioPlayerBox');
           const audioPreview = document.getElementById('audioPreview');
 
@@ -666,7 +667,6 @@ function updateRealCounter() {
             audioPlayerBox.style.display = 'none';
           }
 
-          // Handle Slide Photo Posts
           const photoGallerySection = document.getElementById('photoGallerySection');
           const photoGrid = document.getElementById('photoGrid');
           photoGrid.innerHTML = '';
@@ -685,7 +685,8 @@ function updateRealCounter() {
 
           resultCard.style.display = 'block';
 
-          // Save to Local History
+          // Tambah hitungan asli +1 & simpan riwayat
+          incrementRealCounter();
           saveToHistory(title, coverUrl);
         } else { 
           alert('Gagal mengambil data video. Kemungkinan video bersifat privat atau sudah dihapus.'); 
@@ -697,7 +698,6 @@ function updateRealCounter() {
       }
     }
 
-    // Sistem Local Storage History
     function saveToHistory(title, thumb) {
       let history = JSON.parse(localStorage.getItem('tiktok_history') || '[]');
       history.unshift({ title, thumb, time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) });
