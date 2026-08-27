@@ -16,7 +16,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
+      padding: 40px 20px;
       color: #ffffff;
       background: radial-gradient(circle at 10% 10%, #1a0033 0%, #080811 50%, #001a2e 100%);
       background-attachment: fixed;
@@ -27,16 +27,16 @@
     body::after {
       content: "";
       position: absolute;
-      width: 380px;
-      height: 380px;
-      background: linear-gradient(135deg, rgba(0, 242, 254, 0.25), rgba(255, 0, 80, 0.25));
-      filter: blur(100px);
+      width: 450px;
+      height: 450px;
+      background: linear-gradient(135deg, rgba(0, 242, 254, 0.2), rgba(255, 0, 80, 0.2));
+      filter: blur(120px);
       border-radius: 50%;
       z-index: 0;
       pointer-events: none;
     }
 
-    .wrapper { position: relative; z-index: 2; width: 100%; max-width: 580px; }
+    .wrapper { position: relative; z-index: 2; width: 100%; max-width: 620px; }
 
     .card {
       background: rgba(18, 20, 29, 0.85);
@@ -178,7 +178,7 @@
       font-weight: 600;
     }
 
-    /* Result Card Layout (Thumbnail + Buttons) */
+    /* Result Card Layout */
     #resultCard { 
       display: none; 
       margin-top: 10px; 
@@ -216,7 +216,6 @@
       display: block;
     }
 
-    /* Badge Durasi Video di Pojok Kanan Bawah Thumbnail */
     .duration-badge {
       position: absolute;
       bottom: 8px;
@@ -302,7 +301,92 @@
     .feature-title { font-size: 11px; font-weight: 700; color: #fff; }
     .feature-desc { font-size: 9px; color: #717888; margin-top: 2px; }
 
-    footer { margin-top: 24px; font-size: 11px; color: #525866; text-align: center; }
+    /* Section Petunjuk & FAQ Style */
+    .section-title {
+      font-size: 16px;
+      font-weight: 800;
+      margin: 32px 0 16px;
+      color: #00F2FE;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .guide-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: left;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 12px 16px;
+      border-radius: 14px;
+    }
+
+    .step-num {
+      background: linear-gradient(135deg, #FF0050, #7F00FF);
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .step-text {
+      font-size: 12px;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    .faq-accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+    }
+
+    .faq-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 14px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #f1f5f9;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.2s;
+    }
+
+    .faq-question:hover { background: rgba(255, 255, 255, 0.05); }
+
+    .faq-answer {
+      padding: 0 16px 14px;
+      font-size: 12px;
+      color: #94a3b8;
+      line-height: 1.5;
+      display: none;
+    }
+
+    footer { margin-top: 32px; font-size: 11px; color: #525866; text-align: center; }
   </style>
 </head>
 <body>
@@ -364,6 +448,49 @@
           <div class="feature-icon">🔒</div>
           <div class="feature-title">100% Aman</div>
           <div class="feature-desc">Tanpa login/daftar</div>
+        </div>
+      </div>
+
+      <!-- Section Petunjuk Penggunaan -->
+      <div class="section-title">📖 Cara Mengunduh Video TikTok</div>
+      <div class="guide-steps">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-text">Buka aplikasi TikTok, pilih video yang ingin diunduh, lalu tekan tombol <b>Bagikan (Share)</b> dan klik <b>Salin Tautan (Copy Link)</b>.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-text">Kembali ke halaman ini, klik tombol <b>📋 Tempel</b> pada kolom input di atas, lalu klik <b>Proses</b>.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-text">Tunggu beberapa detik hingga video selesai diproses, lalu pilih opsi format unduhan (HD Tanpa WM, SD, atau MP3) sesuai kebutuhanmu.</div>
+        </div>
+      </div>
+
+      <!-- Section FAQ -->
+      <div class="section-title">❓ Pertanyaan Sering Diajukan (FAQ)</div>
+      <div class="faq-accordion">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Apakah pengunduh ini benar-benar gratis?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer">Ya, layanan pengunduh ini 100% gratis tanpa batasan jumlah unduhan dan tanpa perlu mendaftar atau login akun.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Di mana hasil unduhan tersimpan?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer">Secara default, file yang kamu unduh akan tersimpan di folder <b>Downloads</b> atau galeri penyimpanan perangkat kamu (HP/Laptop).</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Apakah layanan ini bisa mengunduh audio/MP3 saja?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer">Bisa! Setelah link diproses, pilihlah tombol warna ungu <b>Download Audio (MP3)</b> untuk hanya mengunduh musik dari video tersebut.</div>
         </div>
       </div>
 
@@ -473,6 +600,18 @@
       document.getElementById('resultCard').style.display = 'none';
       document.getElementById('inputSection').style.display = 'flex';
       updateActionBtn();
+    }
+
+    function toggleFaq(element) {
+      const answer = element.nextElementSibling;
+      const icon = element.querySelector('span:last-child');
+      if (answer.style.display === 'block') {
+        answer.style.display = 'none';
+        icon.textContent = '+';
+      } else {
+        answer.style.display = 'block';
+        icon.textContent = '−';
+      }
     }
   </script>
 </body>
