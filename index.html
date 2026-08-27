@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TikTok Video & Audio Downloader Ultra</title>
   
-  <!-- Logo Favicon "DT" di Tab Browser -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='28' fill='%23121212'/><text x='50%' y='68%' font-size='52' font-weight='900' font-family='Arial, sans-serif' text-anchor='middle' fill='%23FF0050'>D<tspan fill='%2300F2FE'>T</tspan></text></svg>">
 
   <style>
@@ -27,36 +26,37 @@
     body::after {
       content: "";
       position: absolute;
-      width: 500px;
-      height: 500px;
+      width: 600px;
+      height: 600px;
       background: linear-gradient(135deg, rgba(0, 242, 254, 0.15), rgba(255, 0, 80, 0.15));
-      filter: blur(140px);
+      filter: blur(150px);
       border-radius: 50%;
       z-index: 0;
       pointer-events: none;
     }
 
-    /* Container Utama 1 Kolom Terpusat ala SSSTik */
+    /* Container Utama Memanjang ala SSSTik */
     .wrapper { 
       position: relative; 
       z-index: 2; 
       width: 100%; 
-      max-width: 760px; 
+      max-width: 860px; /* Melebarkan kontainer utama */
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 24px;
     }
 
-    /* Card Box Standar SSSTik */
+    /* Card Box Terpisah */
     .card-box {
       background: rgba(18, 20, 29, 0.85);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       border: 1px solid rgba(255, 255, 255, 0.12);
-      padding: 36px 32px;
+      padding: 40px 36px;
       border-radius: 24px;
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      width: 100%;
     }
 
     .downloader-card { text-align: center; }
@@ -75,7 +75,7 @@
     }
 
     .brand {
-      font-size: 34px;
+      font-size: 36px;
       font-weight: 900;
       margin-bottom: 8px;
       background: linear-gradient(135deg, #00F2FE 0%, #4FACFE 30%, #FF0050 100%);
@@ -84,19 +84,20 @@
       letter-spacing: -0.5px;
     }
 
-    .subtitle { color: #a0a5ba; font-size: 14px; margin-bottom: 28px; line-height: 1.5; }
+    .subtitle { color: #a0a5ba; font-size: 15px; margin-bottom: 30px; line-height: 1.5; }
 
-    /* Input Box Wrapper */
+    /* Input Box Wrapper Lebar */
     .input-wrapper {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       background: rgba(10, 11, 16, 0.85);
-      padding: 6px;
+      padding: 8px;
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 18px;
       transition: all 0.3s ease;
+      width: 100%;
     }
 
     .input-wrapper:focus-within {
@@ -106,19 +107,19 @@
 
     input {
       flex: 1;
-      min-width: 160px;
+      min-width: 180px;
       padding: 12px 14px;
       background: transparent;
       border: none;
       color: #fff;
-      font-size: 14px;
+      font-size: 15px;
       outline: none;
     }
 
     input::placeholder { color: #525866; }
 
     .btn-action-toggle {
-      padding: 12px 16px;
+      padding: 12px 18px;
       border-radius: 12px;
       font-weight: 800;
       cursor: pointer;
@@ -126,7 +127,7 @@
       background: rgba(255, 255, 255, 0.08); 
       color: #00F2FE; 
       transition: all 0.25s ease;
-      font-size: 13px;
+      font-size: 14px;
       white-space: nowrap;
     }
 
@@ -137,7 +138,7 @@
     }
 
     .btn-submit {
-      padding: 12px 24px;
+      padding: 12px 28px;
       border-radius: 12px;
       font-weight: 800;
       cursor: pointer;
@@ -145,7 +146,7 @@
       background: linear-gradient(135deg, #FF0050 0%, #7F00FF 100%);
       color: white;
       box-shadow: 0 4px 15px rgba(255, 0, 80, 0.4);
-      font-size: 13px;
+      font-size: 14px;
       transition: all 0.3s ease;
       white-space: nowrap;
     }
@@ -180,7 +181,7 @@
 
     #loadingMsg {
       display: none;
-      font-size: 13px;
+      font-size: 14px;
       color: #00F2FE;
       margin-top: 8px;
       font-weight: 600;
@@ -285,93 +286,98 @@
     .btn-reset {
       width: 100%;
       margin-top: 16px;
-      padding: 12px;
+      padding: 14px;
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.15);
       color: #00F2FE;
       border-radius: 12px;
       font-weight: 700;
-      font-size: 13px;
+      font-size: 14px;
       cursor: pointer;
       transition: all 0.3s;
     }
 
     .btn-reset:hover { background: rgba(0, 242, 254, 0.15); }
 
-    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 28px; }
-    .feature-box { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 16px 10px; border-radius: 14px; text-align: center; }
-    .feature-icon { font-size: 22px; margin-bottom: 6px; }
-    .feature-title { font-size: 12px; font-weight: 700; color: #fff; }
-    .feature-desc { font-size: 10px; color: #717888; margin-top: 2px; }
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 32px; }
+    .feature-box { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 18px 12px; border-radius: 16px; text-align: center; }
+    .feature-icon { font-size: 24px; margin-bottom: 6px; }
+    .feature-title { font-size: 13px; font-weight: 700; color: #fff; }
+    .feature-desc { font-size: 11px; color: #717888; margin-top: 4px; }
 
-    /* Section Judul Kotak */
+    /* Section Judul & Teks yang Dibesarkan sampai Samping */
     .section-title {
-      font-size: 18px;
+      font-size: 22px; /* Diperbesar */
       font-weight: 800;
-      margin-bottom: 18px;
+      margin-bottom: 22px;
       color: #00F2FE;
       text-align: left;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
+      letter-spacing: -0.3px;
     }
 
     .guide-steps {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 16px;
       text-align: left;
+      width: 100%;
     }
 
     .step-item {
       display: flex;
       align-items: flex-start;
-      gap: 14px;
+      gap: 16px;
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 16px 18px;
-      border-radius: 16px;
+      padding: 20px 24px; /* Dibuat melebar penuh */
+      border-radius: 18px;
+      width: 100%;
     }
 
     .step-num {
       background: linear-gradient(135deg, #FF0050, #7F00FF);
       color: white;
-      width: 26px;
-      height: 26px;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 800;
       flex-shrink: 0;
     }
 
     .step-text {
-      font-size: 13px;
-      color: #cbd5e1;
+      font-size: 15px; /* Kalimat dibesarkan */
+      color: #e2e8f0;
       line-height: 1.6;
     }
 
     .faq-accordion {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 14px;
       text-align: left;
+      width: 100%;
     }
 
     .faq-item {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
+      border-radius: 18px;
       overflow: hidden;
+      width: 100%;
     }
 
     .faq-question {
-      padding: 16px 18px;
-      font-size: 14px;
+      padding: 18px 22px;
+      font-size: 15px; /* Judul FAQ dibesarkan */
       font-weight: 700;
-      color: #f1f5f9;
+      color: #f8fafc;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
@@ -382,24 +388,28 @@
     .faq-question:hover { background: rgba(255, 255, 255, 0.05); }
 
     .faq-answer {
-      padding: 0 18px 16px;
-      font-size: 13px;
+      padding: 0 22px 20px;
+      font-size: 14px; /* Jawaban FAQ dibesarkan */
       color: #94a3b8;
       line-height: 1.6;
       display: none;
     }
 
-    footer { margin-top: 12px; font-size: 12px; color: #525866; text-align: center; }
+    footer { margin-top: 16px; font-size: 12px; color: #525866; text-align: center; }
 
     /* Media Queries Penyesuaian HP */
-    @media (max-width: 600px) {
+    @media (max-width: 650px) {
       body { padding: 20px 12px; }
-      .card-box { padding: 24px 18px; border-radius: 20px; }
-      .brand { font-size: 28px; }
+      .card-box { padding: 26px 20px; border-radius: 20px; }
+      .brand { font-size: 30px; }
+      .section-title { font-size: 18px; }
+      .step-text { font-size: 13px; }
+      .faq-question { font-size: 13px; }
+      .faq-answer { font-size: 12px; }
       .result-container { flex-direction: column; }
       .thumb-wrapper { width: 100%; height: 230px; }
       .btn-submit { width: 100%; }
-      .features { grid-template-columns: 1fr; gap: 8px; }
+      .features { grid-template-columns: 1fr; gap: 10px; }
     }
   </style>
 </head>
@@ -407,7 +417,6 @@
 
   <div class="wrapper">
     
-    <!-- KOTAK 1: Downloader Utama -->
     <div class="card-box downloader-card">
       <span class="badge">⚡ ULTRA FAST & FREE</span>
       <div class="brand">TikTok Downloader</div>
@@ -468,7 +477,6 @@
       </div>
     </div>
 
-    <!-- KOTAK 2: Petunjuk Penggunaan -->
     <div class="card-box">
       <div class="section-title">💡 Cara Download Video TikTok Tanpa Watermark</div>
       <div class="guide-steps">
@@ -487,7 +495,6 @@
       </div>
     </div>
 
-    <!-- KOTAK 3: FAQ -->
     <div class="card-box">
       <div class="section-title">❓ Pertanyaan Sering Diajukan (FAQ)</div>
       <div class="faq-accordion">
@@ -524,7 +531,7 @@
             <span>Bisakah saya mengunduh musik/audio MP3 saja dari TikTok?</span>
             <span>+</span>
           </div>
-          <div class="faq-answer">Bisa! Setelah link video berhasil diproses, cukup klik tombol <b>Download Audio (MP3)</b> untuk menyimpan file musiknya saja.</div>
+          <div class="faq-answer">Bisa! Setelah link video berhasil dipproses, cukup klik tombol <b>Download Audio (MP3)</b> untuk menyimpan file musiknya saja.</div>
         </div>
       </div>
     </div>
