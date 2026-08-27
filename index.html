@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TikTok Video & Audio Downloader Ultra</title>
   
+  <!-- Logo Favicon "DT" di Tab Browser -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='28' fill='%23121212'/><text x='50%' y='68%' font-size='52' font-weight='900' font-family='Arial, sans-serif' text-anchor='middle' fill='%23FF0050'>D<tspan fill='%2300F2FE'>T</tspan></text></svg>">
 
   <style>
@@ -73,6 +74,7 @@
 
     .subtitle { color: #a0a5ba; font-size: 13px; margin-bottom: 25px; line-height: 1.5; }
 
+    /* Input Box Wrapper */
     .input-wrapper {
       display: flex;
       flex-wrap: wrap;
@@ -142,6 +144,7 @@
       .btn-submit { width: 100%; }
     }
 
+    /* Animation Loading Dots */
     .dots-loader {
       display: none;
       justify-content: center;
@@ -175,6 +178,7 @@
       font-weight: 600;
     }
 
+    /* Result Card Layout (Thumbnail + Buttons) */
     #resultCard { 
       display: none; 
       margin-top: 10px; 
@@ -212,6 +216,7 @@
       display: block;
     }
 
+    /* Badge Durasi Video di Pojok Kanan Bawah Thumbnail */
     .duration-badge {
       position: absolute;
       bottom: 8px;
@@ -399,7 +404,6 @@
       return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
     }
 
-    // Menggunakan API TikWM Publik yang Bebas Rate Limit & Bebas API Key
     async function fetchVideo() {
       const videoUrl = document.getElementById('tiktokUrl').value.trim();
       const inputSection = document.getElementById('inputSection');
@@ -416,7 +420,7 @@
 
       try {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 Detik Timeout Limit
+        const timeoutId = setTimeout(() => controller.abort(), 8000);
 
         const res = await fetch(`https://www.tikwm.com/api/?url=${encodeURIComponent(videoUrl)}`, {
           method: 'GET',
