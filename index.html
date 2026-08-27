@@ -36,40 +36,30 @@
       pointer-events: none;
     }
 
-    /* Container Wrapper Utama */
+    /* Container Utama 1 Kolom Terpusat ala SSSTik */
     .wrapper { 
       position: relative; 
       z-index: 2; 
       width: 100%; 
-      max-width: 1100px; 
+      max-width: 760px; 
+      margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 20px;
     }
 
-    /* Layout Grid 2 Kolom untuk PC/Laptop */
-    .main-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 24px;
-      align-items: start;
-    }
-
-    /* Styling Kotak Terpisah (Card Modular) */
+    /* Card Box Standar SSSTik */
     .card-box {
-      background: rgba(18, 20, 29, 0.82);
+      background: rgba(18, 20, 29, 0.85);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       border: 1px solid rgba(255, 255, 255, 0.12);
-      padding: 32px 28px;
+      padding: 36px 32px;
       border-radius: 24px;
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     }
 
-    /* Downloader Card spesifik */
-    .downloader-card {
-      text-align: center;
-    }
+    .downloader-card { text-align: center; }
 
     .badge {
       display: inline-flex;
@@ -85,7 +75,7 @@
     }
 
     .brand {
-      font-size: 32px;
+      font-size: 34px;
       font-weight: 900;
       margin-bottom: 8px;
       background: linear-gradient(135deg, #00F2FE 0%, #4FACFE 30%, #FF0050 100%);
@@ -94,7 +84,7 @@
       letter-spacing: -0.5px;
     }
 
-    .subtitle { color: #a0a5ba; font-size: 13px; margin-bottom: 25px; line-height: 1.5; }
+    .subtitle { color: #a0a5ba; font-size: 14px; margin-bottom: 28px; line-height: 1.5; }
 
     /* Input Box Wrapper */
     .input-wrapper {
@@ -116,8 +106,8 @@
 
     input {
       flex: 1;
-      min-width: 140px;
-      padding: 10px 12px;
+      min-width: 160px;
+      padding: 12px 14px;
       background: transparent;
       border: none;
       color: #fff;
@@ -128,7 +118,7 @@
     input::placeholder { color: #525866; }
 
     .btn-action-toggle {
-      padding: 10px 14px;
+      padding: 12px 16px;
       border-radius: 12px;
       font-weight: 800;
       cursor: pointer;
@@ -147,7 +137,7 @@
     }
 
     .btn-submit {
-      padding: 10px 20px;
+      padding: 12px 24px;
       border-radius: 12px;
       font-weight: 800;
       cursor: pointer;
@@ -207,17 +197,17 @@
 
     .result-container {
       display: flex;
-      gap: 16px;
+      gap: 20px;
       background: rgba(10, 11, 16, 0.6);
       border: 1px solid rgba(255, 255, 255, 0.12);
-      padding: 16px;
+      padding: 20px;
       border-radius: 18px;
     }
 
     .thumb-wrapper {
       position: relative;
-      width: 140px;
-      height: 180px;
+      width: 160px;
+      height: 200px;
       flex-shrink: 0;
       border-radius: 12px;
       overflow: hidden;
@@ -260,30 +250,30 @@
     }
 
     .video-title {
-      font-size: 13px;
+      font-size: 14px;
       color: #e2e8f0;
-      line-height: 1.4;
+      line-height: 1.5;
       font-weight: 600;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       display: -webkit-box;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
 
-    .action-btns { display: flex; flex-direction: column; gap: 8px; }
+    .action-btns { display: flex; flex-direction: column; gap: 10px; }
 
     .btn-dl { 
-      padding: 10px 14px; 
+      padding: 12px 16px; 
       border-radius: 10px; 
       text-decoration: none; 
       color: white; 
       font-weight: 700; 
-      font-size: 12px; 
+      font-size: 13px; 
       display: flex; 
       align-items: center; 
       justify-content: center; 
-      gap: 6px;
+      gap: 8px;
       transition: all 0.25s; 
     }
 
@@ -294,7 +284,7 @@
 
     .btn-reset {
       width: 100%;
-      margin-top: 14px;
+      margin-top: 16px;
       padding: 12px;
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.15);
@@ -308,17 +298,17 @@
 
     .btn-reset:hover { background: rgba(0, 242, 254, 0.15); }
 
-    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 24px; }
-    .feature-box { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 14px 8px; border-radius: 14px; text-align: center; }
-    .feature-icon { font-size: 20px; margin-bottom: 4px; }
-    .feature-title { font-size: 11px; font-weight: 700; color: #fff; }
-    .feature-desc { font-size: 9px; color: #717888; margin-top: 2px; }
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 28px; }
+    .feature-box { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 16px 10px; border-radius: 14px; text-align: center; }
+    .feature-icon { font-size: 22px; margin-bottom: 6px; }
+    .feature-title { font-size: 12px; font-weight: 700; color: #fff; }
+    .feature-desc { font-size: 10px; color: #717888; margin-top: 2px; }
 
     /* Section Judul Kotak */
     .section-title {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 800;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
       color: #00F2FE;
       text-align: left;
       display: flex;
@@ -336,50 +326,50 @@
     .step-item {
       display: flex;
       align-items: flex-start;
-      gap: 12px;
+      gap: 14px;
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 14px 16px;
-      border-radius: 14px;
+      padding: 16px 18px;
+      border-radius: 16px;
     }
 
     .step-num {
       background: linear-gradient(135deg, #FF0050, #7F00FF);
       color: white;
-      width: 24px;
-      height: 24px;
+      width: 26px;
+      height: 26px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 800;
       flex-shrink: 0;
     }
 
     .step-text {
-      font-size: 12px;
+      font-size: 13px;
       color: #cbd5e1;
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
     .faq-accordion {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
       text-align: left;
     }
 
     .faq-item {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 14px;
+      border-radius: 16px;
       overflow: hidden;
     }
 
     .faq-question {
-      padding: 14px 16px;
-      font-size: 13px;
+      padding: 16px 18px;
+      font-size: 14px;
       font-weight: 700;
       color: #f1f5f9;
       cursor: pointer;
@@ -392,31 +382,24 @@
     .faq-question:hover { background: rgba(255, 255, 255, 0.05); }
 
     .faq-answer {
-      padding: 0 16px 14px;
-      font-size: 12px;
+      padding: 0 18px 16px;
+      font-size: 13px;
       color: #94a3b8;
-      line-height: 1.5;
+      line-height: 1.6;
       display: none;
     }
 
-    footer { margin-top: 16px; font-size: 11px; color: #525866; text-align: center; }
+    footer { margin-top: 12px; font-size: 12px; color: #525866; text-align: center; }
 
-    /* Media Queries untuk Penyesuaian HP vs PC/Laptop */
-    @media (max-width: 900px) {
-      .main-grid {
-        grid-template-columns: 1fr; /* Berubah menjadi 1 kolom di HP/Tablet */
-      }
-      .wrapper {
-        max-width: 580px;
-      }
-    }
-
-    @media (max-width: 500px) {
+    /* Media Queries Penyesuaian HP */
+    @media (max-width: 600px) {
       body { padding: 20px 12px; }
       .card-box { padding: 24px 18px; border-radius: 20px; }
+      .brand { font-size: 28px; }
       .result-container { flex-direction: column; }
-      .thumb-wrapper { width: 100%; height: 220px; }
+      .thumb-wrapper { width: 100%; height: 230px; }
       .btn-submit { width: 100%; }
+      .features { grid-template-columns: 1fr; gap: 8px; }
     }
   </style>
 </head>
@@ -424,92 +407,87 @@
 
   <div class="wrapper">
     
-    <!-- Grid Utama (Downloader di Kiri, Petunjuk di Kanan saat di PC) -->
-    <div class="main-grid">
-      
-      <!-- KOTAK 1: Downloader Utama -->
-      <div class="card-box downloader-card">
-        <span class="badge">⚡ ULTRA FAST & FREE</span>
-        <div class="brand">TikTok Downloader</div>
-        <p class="subtitle">Unduh Video TikTok HD & Musik MP3 Tanpa Watermark</p>
+    <!-- KOTAK 1: Downloader Utama -->
+    <div class="card-box downloader-card">
+      <span class="badge">⚡ ULTRA FAST & FREE</span>
+      <div class="brand">TikTok Downloader</div>
+      <p class="subtitle">Unduh Video TikTok HD & Musik MP3 Tanpa Watermark</p>
 
-        <div class="input-wrapper" id="inputSection">
-          <input type="text" id="tiktokUrl" placeholder="Tempel link TikTok..." oninput="updateActionBtn()">
-          <button type="button" class="btn-action-toggle" id="btnToggle" onclick="handleToggleAction()">
-            <span id="btnIcon">📋</span> <span id="btnText">Tempel</span>
-          </button>
-          <button class="btn-submit" onclick="fetchVideo()">Proses</button>
-        </div>
-
-        <div id="loader" class="dots-loader">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <p id="loadingMsg">Mengambil data, mohon tunggu beberapa detik...</p>
-
-        <div id="resultCard">
-          <div class="result-container">
-            <div class="thumb-wrapper">
-              <img id="videoThumb" src="" alt="Thumbnail Video">
-              <div id="videoDuration" class="duration-badge">
-                ⏱️ <span id="durationText">0:41</span>
-              </div>
-            </div>
-            <div class="info-wrapper">
-              <div id="videoTitle" class="video-title">TikTok Video</div>
-              <div class="action-btns">
-                <a id="btnHd" class="btn-dl btn-hd" href="#" target="_blank" download>🚀 Download HD (No WM)</a>
-                <a id="btnSd" class="btn-dl btn-sd" href="#" target="_blank" download>📹 Download SD Video</a>
-                <a id="btnAudio" class="btn-dl btn-audio" href="#" target="_blank" download>🎵 Download Audio (MP3)</a>
-              </div>
-            </div>
-          </div>
-          <button class="btn-reset" onclick="resetDownloader()">🔄 Unduh Video Lain</button>
-        </div>
-
-        <div class="features">
-          <div class="feature-box">
-            <div class="feature-icon">⚡</div>
-            <div class="feature-title">Tanpa Batas</div>
-            <div class="feature-desc">Unduh gratis sepuasnya</div>
-          </div>
-          <div class="feature-box">
-            <div class="feature-icon">💧</div>
-            <div class="feature-title">Tanpa Watermark</div>
-            <div class="feature-desc">Tanpa logo TikTok</div>
-          </div>
-          <div class="feature-box">
-            <div class="feature-icon">🎵</div>
-            <div class="feature-title">MP4 & MP3</div>
-            <div class="feature-desc">Simpan video / audio</div>
-          </div>
-        </div>
+      <div class="input-wrapper" id="inputSection">
+        <input type="text" id="tiktokUrl" placeholder="Tempel link TikTok..." oninput="updateActionBtn()">
+        <button type="button" class="btn-action-toggle" id="btnToggle" onclick="handleToggleAction()">
+          <span id="btnIcon">📋</span> <span id="btnText">Tempel</span>
+        </button>
+        <button class="btn-submit" onclick="fetchVideo()">Proses</button>
       </div>
 
-      <!-- KOTAK 2: Petunjuk Penggunaan -->
-      <div class="card-box">
-        <div class="section-title">💡 Cara Download Video TikTok Tanpa Watermark</div>
-        <div class="guide-steps">
-          <div class="step-item">
-            <div class="step-num">1</div>
-            <div class="step-text"><b>Temukan Video:</b> Buka aplikasi TikTok di HP atau browser PC kamu. Cari dan putar video yang ingin kamu simpan.</div>
+      <div id="loader" class="dots-loader">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <p id="loadingMsg">Mengambil data, mohon tunggu beberapa detik...</p>
+
+      <div id="resultCard">
+        <div class="result-container">
+          <div class="thumb-wrapper">
+            <img id="videoThumb" src="" alt="Thumbnail Video">
+            <div id="videoDuration" class="duration-badge">
+              ⏱️ <span id="durationText">0:41</span>
+            </div>
           </div>
-          <div class="step-item">
-            <div class="step-num">2</div>
-            <div class="step-text"><b>Salin Tautan:</b> Ketuk tombol <b>Bagikan (Share)</b> di sisi kanan layar, lalu pilih opsi <b>Salin Tautan (Copy Link)</b>.</div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">3</div>
-            <div class="step-text"><b>Simpan Video:</b> Kembali ke situs ini, klik tombol <b>📋 Tempel</b> di dalam kotak teks, lalu klik <b>Proses</b> untuk mengunduh video tanpa watermark.</div>
+          <div class="info-wrapper">
+            <div id="videoTitle" class="video-title">TikTok Video</div>
+            <div class="action-btns">
+              <a id="btnHd" class="btn-dl btn-hd" href="#" target="_blank" download>🚀 Download HD (No WM)</a>
+              <a id="btnSd" class="btn-dl btn-sd" href="#" target="_blank" download>📹 Download SD Video</a>
+              <a id="btnAudio" class="btn-dl btn-audio" href="#" target="_blank" download>🎵 Download Audio (MP3)</a>
+            </div>
           </div>
         </div>
+        <button class="btn-reset" onclick="resetDownloader()">🔄 Unduh Video Lain</button>
       </div>
 
+      <div class="features">
+        <div class="feature-box">
+          <div class="feature-icon">⚡</div>
+          <div class="feature-title">Tanpa Batas</div>
+          <div class="feature-desc">Unduh gratis sepuasnya</div>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon">💧</div>
+          <div class="feature-title">Tanpa Watermark</div>
+          <div class="feature-desc">Tanpa logo TikTok</div>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon">🎵</div>
+          <div class="feature-title">MP4 & MP3</div>
+          <div class="feature-desc">Simpan video / audio</div>
+        </div>
+      </div>
     </div>
 
-    <!-- KOTAK 3: FAQ (Memanjang di Bawah) -->
+    <!-- KOTAK 2: Petunjuk Penggunaan -->
+    <div class="card-box">
+      <div class="section-title">💡 Cara Download Video TikTok Tanpa Watermark</div>
+      <div class="guide-steps">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-text"><b>Temukan Video:</b> Buka aplikasi TikTok di HP atau browser PC kamu. Cari dan putar video yang ingin kamu simpan.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-text"><b>Salin Tautan:</b> Ketuk tombol <b>Bagikan (Share)</b> di sisi kanan layar, lalu pilih opsi <b>Salin Tautan (Copy Link)</b>.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-text"><b>Simpan Video:</b> Kembali ke situs ini, klik tombol <b>📋 Tempel</b> di dalam kotak teks, lalu klik <b>Proses</b> untuk mengunduh video tanpa watermark.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KOTAK 3: FAQ -->
     <div class="card-box">
       <div class="section-title">❓ Pertanyaan Sering Diajukan (FAQ)</div>
       <div class="faq-accordion">
